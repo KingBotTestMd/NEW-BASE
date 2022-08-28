@@ -1,17 +1,7 @@
-/* Copyright (C) 2020 T-REX HIRUWA
-
-Licensed under the  GPL-3.0 License;
-you may not use this file except in compliance with the License
-
-T-REX HIRUWA
-*/
-
-// Komutları burada tutacağız.
 var config = require('./config');
 var Commands = [];
 
-function addrex(info, func) {
-    // Basit bir fonksiyon, komut eklemek için.
+function KingXCMD(info, func) {
     var types = ['photo', 'image', 'text', 'message'];
 
     var infos = {
@@ -24,6 +14,7 @@ function addrex(info, func) {
         usage: info['usage'] === undefined ? '' : info['usage'],
         dontAddCommandList: info['dontAddCommandList'] === undefined ? false : info['dontAddCommandList'],
         warn: info['warn'] === undefined ? '' : info['warn'],
+
         function: func
     };
 
@@ -45,6 +36,6 @@ function addrex(info, func) {
 }
 
 module.exports = {
-    addrex: addrex,
+    KingXCMD: KingXCMD,
     commands: Commands
 }

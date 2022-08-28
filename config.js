@@ -1,9 +1,3 @@
-/* Copyright (C) 2021 T-REX
-Licensed under the  GPL-3.0 License;
-you may not use this file except in compliance with the License.
-T-REX HIRUA
-*/
-
 const { Sequelize } = require('sequelize');
 const fs = require('fs');
 if (fs.existsSync('config.env')) require('dotenv').config({ path: './config.env' });
@@ -11,11 +5,11 @@ function convertToBool(text, fault = 'true') {
     return text === fault ? true : false;
 }
 
-DATABASE_URL = process.env.DATABASE_URL === undefined ? './whatsasena.db' : process.env.DATABASE_URL;
+DATABASE_URL = process.env.DATABASE_URL === undefined ? './kingbot.db' : process.env.DATABASE_URL;
 DEBUG = process.env.DEBUG === undefined ? false : convertToBool(process.env.DEBUG);
 
 module.exports = {
-    VERSION: 'V 1.0.0 PUBLIC',
+    VERSION: 'V1.0.0 PUBLIC',
     ZRUN: "zenzapi",
     CHANNEL: 'https://chat.whatsapp.com/GT5V8RakkftB7DAKWMeQML',
     MEN: process.env.MENU_CMD === undefined ? 'menu' : process.env.MENU_CMD,
@@ -34,38 +28,22 @@ module.exports = {
     ALL_LINK_BAN: process.env.ALL_LINK_BAN === undefined ? 'false' : process.env.ALL_LINK_BAN,
     RULES: process.env.GROUP_RULES === undefined ? 'No Rules' : process.env.GROUP_RULES,
     ANTILINK: process.env.ANTI_LINK === undefined ? 'false' : process.env.ANTI_LINK,
-    GANSTYLE: process.env.GAN_IMAGE === undefined ? 'https://i.hizliresim.com/loUtAb.jpg' : process.env.GAN_IMAGE,
     LANG: process.env.LANGUAGE === undefined ? 'EN' : process.env.LANGUAGE.toUpperCase(),
-    OWNER: process.env.OWNER_NAME === undefined ? 'ALPHA' : process.env.OWNER_NAME,
-    ALIVE_LOGO: process.env.ALIVE_LOGO === undefined ? 'https://i.ibb.co/WGNfQhB/IMG-20210820-001112.jpg' : process.env.ALIVE_LOGO,
+    ALIVE_LOGO: process.env.ALIVE_LOGO === undefined ? 'default' : process.env.ALIVE_LOGO,
     WELCOME_LOGO: process.env.WELCOME_LOGO === undefined ? 'https://www.mboxdrive.com/1413772033.mp4' : process.env.WELCOME_LOGO,
     OWNERNUM: process.env.OWNER_NUMBER === undefined ? '940000000000' : process.env.OWNER_NUMBER,
     ALIVEMSG: process.env.ALIVE_MESSAGE === undefined ? 'default' : process.env.ALIVE_MESSAGE,
-    ALIVE_LOGO: process.env.ALIVE_LOGO === undefined ? 'https://telegra.ph/file/e8f3e419b3dafe9fe8153.jpg' : process.env.ALIVE_LOGO,
+    ALIVE_LOGO: process.env.ALIVE_LOGO === undefined ? 'de' : process.env.ALIVE_LOGO,
     VTYPE: process.env.VOICE_CHAT_TYPE === undefined ? 'girl' : process.env.VOICE_CHAT_TYPE,
     BLOCKMSG: process.env.BLOCK_MESSAGE === undefined ? 'default' : process.env.BLOCK_MESSAGE,
     ANTIBAD: process.env.ANTIBAD === undefined ? 'false' : process.env.ANTIBAD,
-    WARN1: process.env.WARN_MSG_1 === undefined ? '\n    📛 GROUP WARN 📛 \n\n🔱 NO WARNS 🔱\n\n': process.env.WARN_MSG_1,
-    WARN2: process.env.WARN_MSG_2 === undefined ? '\n    📛 GROUP WARN 📛 \n\n🔱 NO WARNA 🔱\n\n': process.env.WARN_MSG_2,
-    WARN3: process.env.WARN_MSG_3 === undefined ? '\n    📛 GROUP WARN 📛 \n\n🔱 NO WARNA 🔱\n\n': process.env.WARN_MSG_3,
-    WARN4: process.env.WARN_MSG_4 === undefined ? '\n    📛 GROUP WARN 📛 \n\n🔱 NO WARNA 🔱\n\n': process.env.WARN_MSG_4,
-    GROUPN1: process.env.GROUP_DETAILS === undefined ? 'Alpha OFFICIAL SUPPORT': process.env.GROUP_DETAILS,
-    GROUPL1: process.env.GROUP_LINK_1 === undefined ? 'https://chat.whatsapp.com/GT5V8RakkftB7DAKWMeQML': process.env.GROUP_LINK_1,
-    GROUPN2: process.env.GROUP_NAME_2 === undefined ? 'Alpha OFFICIAL TEST': process.env.GROUP_NAME_2,
-    GROUPL2: process.env.GROUP_LINK_2 === undefined ? 'https://chat.whatsapp.com/LtXba8cXnFjLZw0QAaiPau': process.env.GROUP_LINK_2,
-    GROUPN3: process.env.GROUP_NAME_3 === undefined ? '': process.env.GROUP_NAME_3,
-    GROUPL3: process.env.GROUP_LINK_3 === undefined ? '': process.env.GROUP_LINK_3,
-    GROUPN4: process.env.GROUP_NAME_4 === undefined ? '': process.env.GROUP_NAME_4,
-    GROUPL4: process.env.GROUP_LINK_4 === undefined ? '': process.env.GROUP_LINK_4,
     CAPTION: process.env.CAPTION === undefined ? ' [🇱🇰𝙺𝙸𝙽𝙶 𝙱𝙾𝚃🤘] ' : process.env.CAPTION,
-    CHAT_BOT: process.env.CHAT_BOT === undefined ? 'false' : process.env.CHAT_BOT,
-    AUTOVOICE: process.env.VOICE_CHAT === undefined ? 'false' : process.env.VOICE_CHAT,
     TAGREPLY: process.env.TAG_REPLY === undefined ? '919072790587@s.whatsapp.net' : process.env.TAG_REPLY,
     INBO: process.env.INBO_BLOCK === undefined ? 'false' : process.env.INBO_BLOCK,
     KICKMEMSG: process.env.KICKME_MESSAGE === undefined ? 'default' : process.env.KICKME_MESSAGE,
     BLOCKCHAT: process.env.BLOCK_CHAT === undefined ? false : process.env.BLOCK_CHAT,
     ADDMSG: process.env.ADD_MESSAGE === undefined ? 'default' : process.env.ADD_MESSAGE,
-    BOT_NAME: process.env.BOT_NAME === undefined ? 'Alpha' : process.env.BOT_NAME,
+    BOT_NAME: process.env.BOT_NAME === undefined ? 'KING BOT' : process.env.BOT_NAME,
     MUTEMSG: process.env.MUTE_MESSAGE === undefined ? 'default' : process.env.MUTE_MESSAGE,
     BGMFILTER: process.env.BGM_FILTER === undefined ? false : convertToBool(process.env.BGM_FILTER),
     DISBGM: process.env.DISABLE_JID_BGM_FILTER === undefined ? false : process.env.DISABLE_JID_BGM_FILTER,
@@ -79,7 +57,6 @@ module.exports = {
     BYE_GIF: process.env.BYE_GIF === undefined ? '' : process.env.BYE_GIF,
     BLOCKMSG: process.env.BLOCK_MESSAGE === undefined ? 'default' : process.env.BLOCK_MESSAGE,
     UNBLOCKMSG: process.env.UNBLOCK_MESSAGE === undefined ? 'default' : process.env.UNBLOCK_MESSAGE,
-    TREX: process.env.TREX === undefined ? 'Alpha' : process.env.TREX,
     UNMUTEMSG: process.env.UNMUTE_MESSAGE === undefined ? 'default' : process.env.UNMUTE_MESSAGE,
     WORKTYPE: process.env.WORK_TYPE === undefined ? 'private' : process.env.WORK_TYPE,
     PROMOTEMSG: process.env.PROMOTE_MESSAGE === undefined ? 'default' : process.env.PROMOTE_MESSAGE,
@@ -87,7 +64,7 @@ module.exports = {
     DEMOTEMSG: process.env.DEMOTE_MESSAGE === undefined ? 'default' : process.env.DEMOTE_MESSAGE,
     BANMSG: process.env.BAN_MESSAGE === undefined ? 'default' : process.env.BAN_MESSAGE,
     OVERMSG: process.env.OVER_MESSAGE === undefined ? 'default' : process.env.OVER_MESSAGE,
-    KTB: process.env.TAG_HEADER === undefined ? 'Alpha' : process.env.TAG_HEADER,
+    KTB: process.env.TAG_HEADER === undefined ? 'KING BOT' : process.env.TAG_HEADER,
     TB: process.env.TAG_HEADER === undefined ? '' : process.env.TAG_HEADER,
     AFKMSG: process.env.AFK_MESSAGE === undefined ? 'default' : process.env.AFK_MESSAGE,
     HANDLERS: process.env.HANDLERS === undefined ? '^[.!;]' : process.env.HANDLERS,
@@ -117,7 +94,7 @@ module.exports = {
     ANTI_BAD: process.env.ANTI_BAD === undefined ?'true' : process.env.ANTIBAD,
     WHATS_LINK_BLOCK: process.env.WHATS_LINK_BLOCK === undefined ?'false' : process.env.WHATS_LINK_BLOCK,
     SITE: process.env.SITE === undefined ?'netfiletolink.herokuapp.com/' : process.env.SITE,
-    MENU_LOGO: process.env.MENU_LOGO === undefined ?'https://telegra.ph/file/.jpg' : process.env.MENU_LOGO,
+    MENU_LOGO: process.env.MENU_LOGO === undefined ?'https://telegra.ph/file/24b9b8507613125d34bd1.jpg' : process.env.MENU_LOGO,
     DEVELOPER: 'whitehackers',
     AUTHOR: '[🇱🇰𝙺𝙸𝙽𝙶 𝙱𝙾𝚃🤘]',
     PKGPS: process.env.PKGPS === undefined ?'=xnxcom' : process.env.PKGPS,
@@ -133,7 +110,7 @@ module.exports = {
     ON: "hunter",
     HLOCK: "hadi-api",
     ZTH: "d537895142",
-    DATABASE: DATABASE_URL === './whatsasena.db' ? new Sequelize({ dialect: "sqlite", storage: DATABASE_URL, logging: DEBUG }) : new Sequelize(DATABASE_URL, { dialectOptions: { ssl: { require: true, rejectUnauthorized: false } }, logging: DEBUG }),
+    DATABASE: DATABASE_URL === './kingbot.db' ? new Sequelize({ dialect: "sqlite", storage: DATABASE_URL, logging: DEBUG }) : new Sequelize(DATABASE_URL, { dialectOptions: { ssl: { require: true, rejectUnauthorized: false } }, logging: DEBUG }),
     RBG_API_KEY: process.env.REMOVE_BG_API_KEY === undefined ? false : process.env.REMOVE_BG_API_KEY,
     NO_ONLINE: process.env.NO_ONLINE === undefined ? true : convertToBool(process.env.NO_ONLINE),
     SUDO: process.env.SUDO === undefined ? false : process.env.SUDO,
