@@ -10,6 +10,7 @@ const events = require("./events");
 const chalk = require('chalk');
 const config = require('./config');
 const { default : makeWASocket, useSingleFileAuthState, DisconnectReason, delay, WAConnection } = ('@adiwajshing/baileys');
+const { Message, StringSession, Image, Video } = require('./KingBot/');
 const { Boom } = ('@hapi/boom');
 const { StringSession } = require('./KingBot/');
 const { DataTypes } = require('sequelize');
