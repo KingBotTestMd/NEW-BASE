@@ -55,10 +55,7 @@ async function KingBotConnect () {
         const { connection, lastDisconnect } = update
         console.log(chalk.blueBright.italic('▷ Login information updated! ->'));
             if (connection === 'close') {
-            const shouldReconnect = (lastDisconnect.error as Boom)?.output?.statusCode !== DisconnectReason.loggedOut
-            console.log('connection closed due to ', lastDisconnect.error, ', reconnecting ', shouldReconnect)
-            if (shouldReconnect) { KingBotConnect()    }
-
+            console.log('connection Error🤕 !!!')
         } else if (connection === 'open') { 
         console.log(chalk.green.bold('✅️  Login successful! ▶'));
         console.log(chalk.blueBright.italic('🚀 Installing external Commands... ▶'));
