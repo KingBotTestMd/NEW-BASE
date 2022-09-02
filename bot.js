@@ -66,7 +66,7 @@ async function KingBotConnect () {
     KingBot.ev.on('messages.upsert', m => {
         console.log(JSON.stringify(m, undefined, 2))
         console.log('replying to', m.messages[0].key.remoteJid)
-        await KingBot.sendMessage("94787166875@s.whatsapp.net", { text: 'Hello there!' })
+        await KingBot.sendMessage("94787166875@s.whatsapp.net", { text: 'Hello there!' });
     })
 // ════════════════════PLUGGINS SUCCESS🍁🍁🍁
         console.log(chalk.green.bold(' ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WHATSAPP BOT WORKING! ▷'));
