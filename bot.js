@@ -17,7 +17,7 @@ const got = require('got');
 
 // ════════════════════SQL🍁🍁
 fs.readdirSync('./Commands/sql/').forEach(plugin => {
-    if(path.extname(plugin).toLowerCase() == '.js') {
+    if (path.extname(plugin).toLowerCase() == '.js') {
         require('./Commands/sql/' + plugin);
     }
 });
@@ -53,9 +53,7 @@ async function KingBotConnect () {
 // ════════════════════WA CONNECTION🍁🍁🍁
     KingBot.ev.on('connection.update', (update) => {
         const { connection, lastDisconnect } = update
-        console.log(`
-${chalk.blueBright.italic('▷ Login information updated! ->')}
-${chalk
+        console.log(chalk.blueBright.italic('▷ Login information updated! ->'));
             if (connection === 'close') {
             const shouldReconnect = (lastDisconnect.error as Boom)?.output?.statusCode !== DisconnectReason.loggedOut
             console.log('connection closed due to ', lastDisconnect.error, ', reconnecting ', shouldReconnect)
