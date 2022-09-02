@@ -59,20 +59,8 @@ async function KingBotConnect () {
         } else if (connection === 'open') { 
         console.log(chalk.green.bold('✅️  Login successful! ▶'));
         console.log(chalk.blueBright.italic('🚀 Installing external Commands... ▶'));
-                var plugins = await plugindb.PluginDB.findAll();
-        plugins.map(async (plugin) => {
-            if (!fs.existsSync('./Commands/' + plugin.dataValues.name + '.js')) {
-                console.log(plugin.dataValues.name);
-                var response = await got(plugin.dataValues.url);
-                if (response.statusCode == 200) {
-                    fs.writeFileSync('./Commands/' + plugin.dataValues.name + '.js', response.body);
-                    require('./Commands/' + plugin.dataValues.name + '.js');
-                }    }    });
+                
         console.log(chalk.blueBright.italic('🎭️ Installing Commands...'));
-        fs.readdirSync('./Commands').forEach(plugin => {
-            if(path.extname(plugin).toLowerCase() == '.js') {
-                require('./Commands/' + plugin);
-            }  });
         }
         
     KingBot.ev.on('messages.upsert', m => {
