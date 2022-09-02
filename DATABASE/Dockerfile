@@ -1,4 +1,4 @@
-FROM whitehackers/slkingx:md-beta
+FROM node:latest
 
 RUN git clone https://github.com/KingBotTestMd/NEW-BASE /root/slkingx
 WORKDIR /root/slkingx/
