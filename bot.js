@@ -47,7 +47,7 @@ async function KingBotConnect () {
     const KingBot = makeWASocket({
         logger: Pino({ level: 'fatal' }),
         printQRInTerminal: true,
-        auth: 'StringSession'
+        auth: state
     })
 // ════════════════════WA CONNECTION🍁🍁🍁
     KingBot.ev.on('connection.update', (update) => {
