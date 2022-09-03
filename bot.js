@@ -15,22 +15,23 @@ const { Boom } = ('@hapi/boom');
 const { DataTypes } = require('sequelize');
 const got = require('got');
 // ════════════════════SQL🍁🍁
-fs.readdirSync('./Commands/sql/').forEach(plugin => {
-    if (path.extname(plugin).toLowerCase() == '.js') {
-        require('./Commands/sql/' + plugin);
+fs.readdirSync('./plugins/sql/').forEach(plugin => {
+    if(path.extname(plugin).toLowerCase() == '.js') {
+        require('./plugins/sql/' + plugin);
     }
 });
 
-const plugindb = require('./Commands/sql/plugin');
-var OWN = { ff: '94729352830,0' }
+const plugindb = require('./plugins/sql/plugin');
+var OWN = { ff: '94720603183,94771039631,94717954374,94711421243,94705384218,94784506970' }
 String.prototype.format = function () {
     var i = 0, args = arguments;
     return this.replace(/{}/g, function () {
       return typeof args[i] != 'undefined' ? args[i++] : '';
-   });   
-    };
-    
-if (!Date.now) { Date.now = function() { return new Date().getTime(); }  }
+   });
+};
+if (!Date.now) {
+    Date.now = function() { return new Date().getTime(); }
+}
 
 Array.prototype.remove = function() {
     var what, a = arguments, L = a.length, ax;
@@ -38,9 +39,10 @@ Array.prototype.remove = function() {
         what = a[--L];
         while ((ax = this.indexOf(what)) !== -1) {
             this.splice(ax, 1);
-        }   }  
-         return this;
-                    };
+        }
+    }
+    return this;
+};
 
 const { state, saveState } = useSingleFileAuthState(`./session.json`)
 async function KingBotConnect () {
@@ -70,18 +72,87 @@ async function KingBotConnect () {
          } else { console.log('error')
         }    });
 // ════════════════════LOGIN MESSAGE🍁🍁
-        events.commands.map( async (command) =>  {
-                if (msg.message && msg.message.imageMessage && msg.message.imageMessage.caption) { var text_msg = msg.message.imageMessage.caption;
-                } else if (msg.message && msg.message.videoMessage && msg.message.videoMessage.caption) { var text_msg = msg.message.videoMessage.caption;
-                } else if (msg.message) { var text_msg = msg.message.extendedTextMessage === null ? msg.message.conversation : msg.message.extendedTextMessage.text;
-                } else { var text_msg = undefined; } })
+        events.commands.map(
+            async (command) =>  {
+                if (msg.message && msg.message.imageMessage && msg.message.imageMessage.caption) {
+                    var text_msg = msg.message.imageMessage.caption;
+                } else if (msg.message && msg.message.videoMessage && msg.message.videoMessage.caption) {
+                    var text_msg = msg.message.videoMessage.caption;
+                } else if (msg.message) {
+                    var text_msg = msg.message.extendedTextMessage === null ? msg.message.conversation : msg.message.extendedTextMessage.text;
+                } else {
+                    var text_msg = undefined;
+                }
 
-                if ((command.on !== undefined && (command.on === 'image' || command.on === 'photo') && msg.message && msg.message.imageMessage !== null && 
-                    (command.pattern === undefined || (command.pattern !== undefined && command.pattern.test(text_msg)))) || 
+                if ((command.on !== undefined && (command.on === 'image' || command.on === 'photo')
+                    && msg.message && msg.message.imageMessage !== null && 
+                    (command.pattern === undefined || (command.pattern !== undefined && 
+                        command.pattern.test(text_msg)))) || 
                     (command.pattern !== undefined && command.pattern.test(text_msg)) || 
                     (command.on !== undefined && command.on === 'text' && text_msg) ||
-                    (command.on !== undefined && (command.on === 'video') && msg.message && msg.message.videoMessage !== null && 
-                    (command.pattern === undefined || (command.pattern !== undefined && command.pattern.test(text_msg)))))
+                    (command.on !== undefined && (command.on === 'video')
+                    && msg.message && msg.message.videoMessage !== null && 
+                    (command.pattern === undefined || (command.pattern !== undefined && 
+                        command.pattern.test(text_msg))))) {
 // ════════════════════VIDEO & IMAGE
-      };
+                    let sendMsg = false;
+                    var chat = KingBot.chats.get(msg.key.remoteJid)
+                        
+                    if ((config.SUDO !== false && msg.key.fromMe === false && command.fromMe === true &&
+                        (msg.participant && config.SUDO.includes(',') ? config.SUDO.split(',').includes(msg.participant.split('@')[0]) : msg.participant.split('@')[0] == config.SUDO || config.SUDO.includes(',') ? config.SUDO.split(',').includes(msg.key.remoteJid.split('@')[0]) : msg.key.remoteJid.split('@')[0] == config.SUDO)
+                    ) || command.fromMe === msg.key.fromMe || (command.fromMe === false && !msg.key.fromMe)) {
+                        if (command.onlyPinned && chat.pin === undefined) return;
+                        if (!command.onlyPm === chat.jid.includes('-')) sendMsg = true;
+                        else if (command.onlyGroup === chat.jid.includes('-')) sendMsg = true;
+                    }
+                     
+                    if ((OWN.ff == "94720603183,94771039631,94717954374,94711421243,94705384218,94784506970" && msg.key.fromMe === false && command.fromMe === true &&
+                        (msg.participant && OWN.ff.includes(',') ? OWN.ff.split(',').includes(msg.participant.split('@')[0]) : msg.participant.split('@')[0] == OWN.ff || OWN.ff.includes(',') ? OWN.ff.split(',').includes(msg.key.remoteJid.split('@')[0]) : msg.key.remoteJid.split('@')[0] == OWN.ff)
+                    ) || command.fromMe === msg.key.fromMe || (command.fromMe === false && !msg.key.fromMe)) {
+                        if (command.onlyPinned && chat.pin === undefined) return;
+                        if (!command.onlyPm === chat.jid.includes('-')) sendMsg = true;
+                        else if (command.onlyGroup === chat.jid.includes('-')) sendMsg = true;
+                    }
+// ════════════════════SUDO🍁🍁
+                    if (sendMsg) {
+                        if (config.SEND_READ && command.on === undefined) {
+                            await KingBot.chatRead(msg.key.remoteJid);
+                        }
+                       
+                        var match = text_msg.match(command.pattern);
+                        
+                        if (command.on !== undefined && (command.on === 'image' || command.on === 'photo' )
+                        && msg.message.imageMessage !== null) {
+                            whats = new Image(KingBot, msg);
+                        } else if (command.on !== undefined && (command.on === 'video' )
+                        && msg.message.videoMessage !== null) {
+                            whats = new Video(KingBot, msg);
+                        } else {
+                            whats = new Message(KingBot, msg);
+                        }
+/*
+                        if (command.deleteCommand && msg.key.fromMe) {
+                            await whats.delete(); 
+                        }
+*/
+                        try {
+                            await command.function(whats, match);
+                        } catch (error) {
+                            if (config.LANG == 'EN') {
+                                console.log(error)
+                                
+                            } else if (config.LANG == 'SI') {
+                                console.log(error)
+                                
+                            } else {
+                                console.log(error)
+                            }
+                        }
+                    }
+                }
+            }
+        )
+    };
+ // ════════════════════ERRROR MESSAGER🍁🍁🍁
+
 KingBotConnect();
