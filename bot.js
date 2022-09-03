@@ -81,8 +81,9 @@ async function KingBotConnect () {
                     (command.pattern !== undefined && command.pattern.test(text_msg)) || 
                     (command.on !== undefined && command.on === 'text' && text_msg) ||
                     (command.on !== undefined && (command.on === 'video') && msg.message && msg.message.videoMessage !== null && 
-                    (command.pattern === undefined || (command.pattern !== undefined && command.pattern.test(text_msg)))))      }); 
+                    (command.pattern === undefined || (command.pattern !== undefined && command.pattern.test(text_msg)))))
+                          ); 
 // ════════════════════VIDEO & IMAGE
       };
-
+ };
 KingBotConnect();
