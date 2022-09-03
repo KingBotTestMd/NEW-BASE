@@ -14,7 +14,6 @@ const { Message, Image, Video } = require('./KingBot/');
 const { Boom } = ('@hapi/boom');
 const { DataTypes } = require('sequelize');
 const got = require('got');
-
 // ════════════════════SQL🍁🍁
 fs.readdirSync('./Commands/sql/').forEach(plugin => {
     if (path.extname(plugin).toLowerCase() == '.js') {
@@ -70,7 +69,6 @@ async function KingBotConnect () {
          } else if (config.LANG == 'SI') { console.log('එරර්')
          } else { console.log('error')
         }    });
-    
 // ════════════════════LOGIN MESSAGE🍁🍁
         events.commands.map( async (command) =>  {
                 if (msg.message && msg.message.imageMessage && msg.message.imageMessage.caption) { var text_msg = msg.message.imageMessage.caption;
@@ -83,9 +81,8 @@ async function KingBotConnect () {
                     (command.pattern !== undefined && command.pattern.test(text_msg)) || 
                     (command.on !== undefined && command.on === 'text' && text_msg) ||
                     (command.on !== undefined && (command.on === 'video') && msg.message && msg.message.videoMessage !== null && 
-                    (command.pattern === undefined || (command.pattern !== undefined && command.pattern.test(text_msg)))))
+                    (command.pattern === undefined || (command.pattern !== undefined && command.pattern.test(text_msg)))))      }); 
 // ════════════════════VIDEO & IMAGE
-            });
       };
 
 KingBotConnect();
