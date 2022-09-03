@@ -62,12 +62,6 @@ async function KingBotConnect () {
                 
         console.log(chalk.blueBright.italic('🎭️ Installing Commands...'));
         }
-        
-    KingBot.ev.on('messages.upsert', m => {
-        console.log(JSON.stringify(m, undefined, 2))
-        console.log('replying to', m.messages[0].key.remoteJid)
-        await KingBot.sendMessage("94787166875@s.whatsapp.net", { text: 'Hello there!' });
-    })
 // ════════════════════PLUGGINS SUCCESS🍁🍁🍁
         console.log(chalk.green.bold(' ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WHATSAPP BOT WORKING! ▷'));
         console.log(chalk.blueBright.italic('⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WhatsApp User Bot V1.0.0'));
