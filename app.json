@@ -1,8 +1,8 @@
 {
-  "name": "KING BOT - MD V1",
-  "description": "⎝🔥𝚱𝚰𝚴Ｇ🔥⎠ ᴡʜᴀᴛꜱᴀᴘᴘ ᴜꜱᴇʀ ʙᴏᴛ ᴠ1.0.0",
+  "name": "⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ - MD V1",
+  "description": "⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ ᴡʜᴀᴛꜱᴀᴘᴘ ᴜꜱᴇʀ ʙᴏᴛ ᴠ1.0.0",
   "repository": "https://github.com/KING-BOT-OFFICIAL/KING-BOT-MD",
-  "logo": "https://telegra.ph/file/24b9b8507613125d34bd1.jpg",
+  "logo": "https://telegra.ph/file/b553f253d553821af155f.jpg",
   "keywords": ["nodejs", "bot", "whatsapp bot", "whatsapp automation", "multi device"],
   "stack": "container",
   "env": { 
