@@ -12,7 +12,6 @@ const config = require('./config');
 const { default : makeWASocket, useSingleFileAuthState, DisconnectReason, delay, WAConnection } = ('@adiwajshing/baileys');
 const { Message, Image, Video } = require('./KingBot/');
 const { Boom } = ('@hapi/boom');
-const { StringSession } = require('./KingBot/');
 const { DataTypes } = require('sequelize');
 const got = require('got');
 
