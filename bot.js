@@ -74,7 +74,7 @@ async function KingBotConnect () {
                 if (msg.message && msg.message.imageMessage && msg.message.imageMessage.caption) { var text_msg = msg.message.imageMessage.caption;
                 } else if (msg.message && msg.message.videoMessage && msg.message.videoMessage.caption) { var text_msg = msg.message.videoMessage.caption;
                 } else if (msg.message) { var text_msg = msg.message.extendedTextMessage === null ? msg.message.conversation : msg.message.extendedTextMessage.text;
-                } else { var text_msg = undefined; }
+                } else { var text_msg = undefined; } })
 
                 if ((command.on !== undefined && (command.on === 'image' || command.on === 'photo') && msg.message && msg.message.imageMessage !== null && 
                     (command.pattern === undefined || (command.pattern !== undefined && command.pattern.test(text_msg)))) || 
@@ -82,8 +82,6 @@ async function KingBotConnect () {
                     (command.on !== undefined && command.on === 'text' && text_msg) ||
                     (command.on !== undefined && (command.on === 'video') && msg.message && msg.message.videoMessage !== null && 
                     (command.pattern === undefined || (command.pattern !== undefined && command.pattern.test(text_msg)))))
-                          ); 
 // ════════════════════VIDEO & IMAGE
       };
- };
 KingBotConnect();
