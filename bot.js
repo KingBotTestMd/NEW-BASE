@@ -66,9 +66,9 @@ async function KingBotConnect () {
         console.log(chalk.green.bold(' ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WHATSAPP BOT WORKING! ▷'));
         console.log(chalk.blueBright.italic('⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WhatsApp User Bot V1.0.0'));
         
-         if (config.LANG == 'EN') { await KingBot.sendMessage("94787166875@s.whatsapp.net", { text: '.' });
-         } else if (config.LANG == 'SI') { await KingBot.sendMessage("94787166875@s.whatsapp.net", { text: '.' });
-         } else { await KingBot.sendMessage("94787166875@s.whatsapp.net", { text: '.' });
+         if (config.LANG == 'EN') { console.log('error')
+         } else if (config.LANG == 'SI') { console.log('එරර්')
+         } else { console.log('error')
         }    });
     
 // ════════════════════LOGIN MESSAGE🍁🍁
