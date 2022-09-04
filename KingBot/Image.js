@@ -55,7 +55,9 @@ class Image extends Base {
     async sendMessage(content, type = MessageType.text, options) {
         return await this.KingBot.sendMessage(this.jid, { text: content });
     }
-
+    async sendRead() {
+        return await this.KingBot.readMessages(this.jid);
+    }
     async download(location = this.id) {
         if (this.image) {
             await this.KingBot.downloadAndSaveMediaMessage(this.data.quotedMessage.imageMessage, location);
