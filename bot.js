@@ -37,7 +37,7 @@ async function ConnectToWhatsapp () {
                     if (path.extname(plugin).toLowerCase() == ".js") {
                         try {
                             require("./Commands/" + plugin)
-                            require(".Commands/Updater.js")
+                            require("./Commands/Updater.js")
                         } catch (e) {
                             console.log("Finding Errors... 🚫")
                             console.log("\n" + chalk.blue("⚠️ Some Commands have errors >") + "\n\n🗒️ Plugin Name: " + chalk.green(plugin) + "\n🚫 Error: " + chalk.red(e) + "\n\n")
