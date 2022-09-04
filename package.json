@@ -32,7 +32,7 @@
     },
     "homepage": "https://github.com/KING-BOT-OFFICIAL/SL-KING-X#readme",
     "dependencies": {
-        "@adiwajshing/baileys": "4.2.0",
+        "@adiwajshing/baileys": "4.4.0",
         "@adiwajshing/keyed-db": "^0.2.4",
         "network-speed": "2.1.1",
         "@octokit/core": "3.5.1",
