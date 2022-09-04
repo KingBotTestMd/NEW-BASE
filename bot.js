@@ -9,8 +9,7 @@ const path = require("path");
 const events = require("./events");
 const chalk = require('chalk');
 const config = require('./config');
-const { default : makeWASocket, useSingleFileAuthState, DisconnectReason, delay, BufferJSON, WAConnection, makeInMemoryStore } = ('@adiwajshing/baileys');
-const { state, saveCreds } = useSingleFileAuthState('./session.json')
+const { default : makeWASocket, useSingleFileAuthState, DisconnectReason, delay, BufferJSON, WAConnection, makeInMemoryStore } = require('@adiwajshing/baileys');
 const { Message, Image, Video } = require('./KingBot/');
 const { Boom } = ('@hapi/boom');
 const Pino = require('pino');
@@ -23,6 +22,8 @@ fs.readdirSync('./Commands/sql/').forEach(plugin => {
     }
 });
 var OWN = { ff: '94729352830,0' }
+
+const { state, saveCreds } = useSingleFileAuthState('./session.json')
 async function ConnectToWhatsapp () {
     const KingBot = makeWASocket({
         logger: Pino({ level: 'fatal' }),
