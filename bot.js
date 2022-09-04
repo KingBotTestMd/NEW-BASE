@@ -16,11 +16,6 @@ const Pino = require('pino');
 const { DataTypes } = require('sequelize');
 const got = require('got');
 // ════════════════════SQL🍁🍁
-fs.readdirSync('./Commands/sql/').forEach(plugin => {
-    if (path.extname(plugin).toLowerCase() == '.js') {
-        require('./Commands/sql/' + plugin);
-    }
-});
 var OWN = { ff: '94729352830,0' }
 
 const { state, saveCreds } = useSingleFileAuthState('./session.json')
@@ -38,15 +33,26 @@ async function ConnectToWhatsapp () {
         } else if (connection === 'open') { 
         console.log(chalk.green.bold('✅️  Login successful! ▶'));
         console.log(chalk.blueBright.italic('🚀 Installing external Commands... ▶')); 
+        fs.readdirSync("./Commands").forEach(plugin => {
+                    if (path.extname(plugin).toLowerCase() == ".js") {
+                        try {
+                            require("./Commands/" + plugin)
+                            require(".Commands/updater.js")
+                        } catch (e) {
+                            console.log("Finding Errors... 🚫")
+                            console.log("\n" + chalk.blue("⚠️ Some Commands have errors >") + "\n\n🗒️ Plugin Name: " + chalk.green(plugin) + "\n🚫 Error: " + chalk.red(e) + "\n\n")
+                        }
+                    }
+                })
         console.log(chalk.blueBright.italic('🎭️ Installing Commands...'));
         }
 // ════════════════════PLUGGINS SUCCESS🍁🍁🍁
         console.log(chalk.green.bold(' ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WHATSAPP BOT WORKING! ▷'));
         console.log(chalk.blueBright.italic('⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WhatsApp User Bot V1.0.0'));
         
-         if (config.LANG == 'EN') { console.log('error')
-         } else if (config.LANG == 'SI') { console.log('එරර්')
-         } else { console.log('error')
+         if (config.LANG == 'EN') { console.log('Bot Working.')
+         } else if (config.LANG == 'SI') { console.log('no error')
+         } else { console.log('bot working...')
         }    });
 // ════════════════════LOGIN MESSAGE🍁🍁
         events.commands.map(
