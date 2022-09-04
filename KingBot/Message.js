@@ -54,7 +54,7 @@ class Message extends Base {
     }
 
     async sendMessage(content, type = MessageType.text, options) {
-        return await this.KingBot.sendMessage(this.jid, content, type, options)
+        return await this.KingBot.sendMessage(this.jid, { text: content });
     }
 
     async sendTyping() {

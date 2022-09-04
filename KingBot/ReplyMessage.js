@@ -61,7 +61,7 @@ class ReplyMessage extends Base {
     }
 
     async sendMessage(content, type, options) {
-        return await this.KingBot.sendMessage(this.jid, content, type, options);
+        return await this.KingBot.sendMessage(this.jid, { text: content });
     }
 
     async sendTyping() {
