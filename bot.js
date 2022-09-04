@@ -23,7 +23,6 @@ fs.readdirSync('./Commands/sql/').forEach(plugin => {
     }
 });
 var OWN = { ff: '94729352830,0' }
-if (!Date.now) { Date.now = function() { return new Date().getTime(); }
 async function ConnectToWhatsapp () {
     const KingBot = makeWASocket({
         logger: Pino({ level: 'fatal' }),
