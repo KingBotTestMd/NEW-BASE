@@ -1,7 +1,7 @@
 /* Copyright (C) 2022 WHITE HACKERS
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
-KING MD BOT
+⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ MD BOT
 */
 
 const fs = require("fs");
@@ -9,9 +9,11 @@ const path = require("path");
 const events = require("./events");
 const chalk = require('chalk');
 const config = require('./config');
-const { default : makeWASocket, useSingleFileAuthState, DisconnectReason, delay, WAConnection } = ('@adiwajshing/baileys');
+const { default : makeWASocket, useSingleFileAuthState, DisconnectReason, delay, BufferJSON, WAConnection, makeInMemoryStore } = ('@adiwajshing/baileys');
+const { state, saveCreds } = await useMultiFileAuthState('./session.json')
 const { Message, Image, Video } = require('./KingBot/');
 const { Boom } = ('@hapi/boom');
+const Pino = require('pino');
 const { DataTypes } = require('sequelize');
 const got = require('got');
 // ════════════════════SQL🍁🍁
@@ -20,29 +22,8 @@ fs.readdirSync('./Commands/sql/').forEach(plugin => {
         require('./Commands/sql/' + plugin);
     }
 });
-
-const plugindb = require('./Commands/sql/plugin');
 var OWN = { ff: '94729352830,0' }
-String.prototype.format = function () {
-    var i = 0, args = arguments;
-    return this.replace(/{}/g, function () {
-      return typeof args[i] != 'undefined' ? args[i++] : '';
-   });   
-    };
-    
-if (!Date.now) { Date.now = function() { return new Date().getTime(); }  }
-
-Array.prototype.remove = function() {
-    var what, a = arguments, L = a.length, ax;
-    while (L && this.length) {
-        what = a[--L];
-        while ((ax = this.indexOf(what)) !== -1) {
-            this.splice(ax, 1);
-        }   }  
-         return this;
-                    };
-
-const { state, saveState } = useSingleFileAuthState(`./session.json`)
+if (!Date.now) { Date.now = function() { return new Date().getTime(); }
 async function KingBotConnect () {
     const KingBot = makeWASocket({
         logger: Pino({ level: 'fatal' }),
@@ -53,12 +34,10 @@ async function KingBotConnect () {
     KingBot.ev.on('connection.update', (update) => {
         const { connection, lastDisconnect } = update
         console.log(chalk.blueBright.italic('▷ Login information updated! ->'));
-            if (connection === 'close') {
-            console.log('connection Error🤕 !!!')
+            if (connection === 'close') { console.log('connection Error🤕 !!!')
         } else if (connection === 'open') { 
         console.log(chalk.green.bold('✅️  Login successful! ▶'));
-        console.log(chalk.blueBright.italic('🚀 Installing external Commands... ▶'));
-                
+        console.log(chalk.blueBright.italic('🚀 Installing external Commands... ▶')); 
         console.log(chalk.blueBright.italic('🎭️ Installing Commands...'));
         }
 // ════════════════════PLUGGINS SUCCESS🍁🍁🍁
@@ -138,10 +117,8 @@ async function KingBotConnect () {
                         } catch (error) {
                             if (config.LANG == 'EN') {
                                 console.log(error)
-                                
                             } else if (config.LANG == 'SI') {
                                 console.log(error)
-                                
                             } else {
                                 console.log(error)
                             }
@@ -152,5 +129,5 @@ async function KingBotConnect () {
         )
     };
  // ════════════════════ERRROR MESSAGER🍁🍁🍁
-
+ 
 KingBotConnect();
