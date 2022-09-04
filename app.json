@@ -7,58 +7,68 @@
   "stack": "container",
   "env": { 
         "ALIVE_MASSAGE": {
-            "description": "",
-            "required": false,
-            "value":"default"
-        },
-            "HEROKU_APP_NAME": {
-            "description": "",
-            "required": true,
-            "value":""
-        },
-            "HEROKU_API_KEY": {
-            "description": "",
-            "required": true,
-            "value":""
-        },
-            "BOT_NAME": {
-            "description": "",
-            "required": true,
-            "value":"[🇱🇰𝚱𝚰𝚴Ｇ 𝛃𝚯𝚪🤘] ᎷᎠ"
-        },
-            "HEROKU": {
-            "description": "",
-            "required": true,
-            "value": "true"
-        },
-        "HEROKU_API_KEY": {
-            "description": "",
-            "required": true
-        },
+        "description": "",
+        "required": false,
+        "value":"default"
+         },
+        "ANTI_LINK": {
+        "description": "",
+        "required": true,
+        "value": "true"
+         },
         "HEROKU_APP_NAME": {
-            "description": "",
-            "required": true
-        },
-            "SONG_DOWNLOAD": {
-            "description": "",
-            "required": true,
-            "value":"_*I'm Searching your song*_ ✨➾🔎"
-        },
-            "SOND_UPLOAD": {
-            "description": "",
-            "required": true,
-            "value":"_*I'm Uploading your song*_ ✨➾🎲"
-        },
-            "VIDEO_DOWNLOAD": {
-            "description": "",
-            "required": true,
-            "value":"_*I'm Bringing your video*_ ✨➾🔎"
-        },
-            "VIDEO_UPLOAD": {
-            "description": "",
-            "required": true,
-            "value":"_*I'm Uploading your video*_ ✨➾🎲"
-        }
+        "description": "",
+        "required": true,
+        "value":""
+         },
+        "HEROKU_API_KEY": {
+        "description": "",
+        "required": true,
+        "value":""
+         },
+        "BOT_NAME": {
+        "description": "",
+        "required": true,
+        "value":"[🇱🇰𝚱𝚰𝚴Ｇ 𝛃𝚯𝚪🤘] ᎷᎠ"
+         },
+        "HEROKU": {
+        "description": "",
+        "required": true,
+        "value": "true"
+         },
+        "LANGUAGE": {
+        "description": "",
+        "required": true,
+        "value": "en"
+         },
+        "HEROKU_API_KEY": {
+        "description": "",
+        "required": true
+         },
+        "HEROKU_APP_NAME": {
+        "description": "",
+        "required": true
+         },
+        "SONG_DOWNLOAD": {
+        "description": "",
+        "required": true,
+        "value":"_*I'm Searching your song*_ ✨➾🔎"
+         },
+        "SOND_UPLOAD": {
+        "description": "",
+        "required": true,
+        "value":"_*I'm Uploading your song*_ ✨➾🎲"
+         },
+        "VIDEO_DOWNLOAD": {
+        "description": "",
+        "required": true,
+        "value":"_*I'm Bringing your video*_ ✨➾🔎"
+         },
+        "VIDEO_UPLOAD": {
+        "description": "",
+        "required": true,
+        "value":"_*I'm Uploading your video*_ ✨➾🎲"
+         }
    },
     "addons": [{
       "plan": "heroku-postgresql"
