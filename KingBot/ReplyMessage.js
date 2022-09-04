@@ -52,20 +52,19 @@ class ReplyMessage extends Base {
     }
 
     async delete() {
-        return await this.KingBot.deleteMessage(this.jid, {id: this.id, remoteJid: this.jid, fromMe: true});
+        return await this.KingBot.sendMessage(this.jid, { delete: this.id })
     }
 
     async reply(text) {
-        var message = await this.KingBot.sendMessage(this.jid, text, MessageType.text, {quoted: this.data});
+        var message = await this.KingBot.sendMessage(this.jid, { text: text }, { quoted: message });
         return new Message(this.KingBot, message)
     }
-
-    async sendMessage(content, type, options) {
-        return await this.KingBot.sendMessage(this.jid, { text: content });
-    }
-
+    
     async sendTyping() {
-        return await this.KingBot.updatePresence(this.jid, Presence.composing);
+        return await this.KingBot.sendPresenceUpdate(this.jid, Presence.composing);
+    }
+    async sendMessage(content, type = MessageType.text, options) {
+        return await this.KingBot.sendMessage(this.jid, { text: content });
     }
 
     async download(location = this.id) {

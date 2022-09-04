@@ -41,29 +41,25 @@ class Video extends Base {
     }
 
     async delete() {
-        return await this.KingBot.deleteMessage(this.jid, {id: this.id, remoteJid: this.jid, fromMe: true})
+        return await this.KingBot.sendMessage(this.jid, { delete: this.id })
     }
 
     async reply(text) {
-        var message = await this.KingBot.sendMessage(this.jid, text, MessageType.text, {quoted: this.data})
+        var message = await this.KingBot.sendMessage(this.jid, { text: text }, { quoted: message });
         return new Message(this.KingBot, message)
     }
-
-    async sendMessage(content, type, options) {
-        return await this.KingBot.sendMessage(this.jid, content, type, options)
-    }
-
+    
     async sendTyping() {
-        return await this.KingBot.updatePresence(this.jid, Presence.composing) ;
+        return await this.KingBot.sendPresenceUpdate(this.jid, Presence.composing);
     }
-
-    async sendRead() {
-        return await this.KingBot.chatRead(this.jid);
+    async sendMessage(content, type = MessageType.text, options) {
+        return await this.KingBot.sendMessage(this.jid, { text: content });
     }
 
     async download(location = this.id) {
-        await this.KingBot.downloadAndSaveMediaMessage(this.data, location);
-        return this.id + '.' + this.mimetype.split('/')[1];
+        if (this.image) {
+            await this.KingBot.downloadAndSaveMediaMessage(this.data.quotedMessage.imageMessage, location);
+            return this.id + '.' + this.mimetype.split('/')[1];    
     }
 };
 
