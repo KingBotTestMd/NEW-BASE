@@ -67,14 +67,14 @@ class ReplyMessage extends Base {
         return await this.KingBot.sendPresenceUpdate(Presence.composing, this.jid);
     }
 
-    async download(location = this.id) {
+/*    async download(location = this.id) {
         if (this.image) {
             await this.client.downloadAndSaveMediaMessage(this.data.quotedMessage.imageMessage, location);
             return this.id + '.' + this.mimetype.split('/')[1];    
         } else {
             return false;
         }
-    }
+    }*/
 };
 
 module.exports = ReplyMessage;

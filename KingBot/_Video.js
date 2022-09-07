@@ -56,10 +56,10 @@ class Video extends Base {
         return await this.KingBot.sendPresenceUpdate(Presence.composing, this.jid);
     }
 
-    async download(location = this.id) {
+/*    async download(location = this.id) {
         await this.client.downloadAndSaveMediaMessage(this.data, location);
         return this.id + '.' + this.mimetype.split('/')[1];
-    }
+    }*/
 };
 
 module.exports = Video;

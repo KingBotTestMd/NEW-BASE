@@ -56,7 +56,7 @@ class Image extends Base {
         return await this.KingBot.sendPresenceUpdate(Presence.composing, this.jid);
     }
 //Non MD
-    async download(location = this.id) {
+/*    async download(location = this.id) {
             const buffer = await downloadMediaMessage(m, 'buffer', { }, { logger, reuploadRequest: sock.updateMediaMessage })
         // save to file
         await writeFile('./my-download.jpeg', buffer)
@@ -65,7 +65,7 @@ class Image extends Base {
 
         await this.KingBot.downloadAndSaveMediaMessage(this.data, location);
         return this.id + '.' + this.mimetype.split('/')[1];
-    }
+    }*/
 };
 
 module.exports = Image;
