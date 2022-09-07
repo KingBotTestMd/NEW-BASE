@@ -8,10 +8,10 @@ KING BOT OFFICIAL - KING BOT MD
 
 
 module.exports = {
-    Base: require('./Base'),
-    Message: require('./Message'),
-    StringSession: require('./StringSession'),
-    ReplyMessage: require('./ReplyMessage'),
-    Image: require('./Image'),
-    Video: require('./Video')
+    Base: require('./_Base'),
+    Message: require('./_Message'),
+    StringSession: require('./_StringSession'),
+    ReplyMessage: require('./_ReplyMessage'),
+    Image: require('./_Image'),
+    Video: require('./_Video')
 };
