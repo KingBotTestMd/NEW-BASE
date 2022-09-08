@@ -6,8 +6,8 @@ you may not use this file except in compliance with the License.
 
 
 const {MessageType, Presence, MessageOptions} = require('@adiwajshing/baileys');
-const Base = require('./Base');
-const Image = require('./Image');
+const Base = require('./_Base');
+const Image = require('./_Image');
 
 class ReplyMessage extends Base {
     constructor(client, data) {

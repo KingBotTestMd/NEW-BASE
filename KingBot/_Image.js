@@ -6,9 +6,9 @@ you may not use this file except in compliance with the License.
 
 
 const {MessageType, Presence, MessageOptions} = require('@adiwajshing/baileys');
-const Base = require('./Base');
-const Message = require('./Message');
-const ReplyMessage = require('./ReplyMessage');
+const Base = require('./_Base');
+const Message = require('./_Message');
+const ReplyMessage = require('./_ReplyMessage');
 
 class Image extends Base {
     constructor(KingBot, data) {
