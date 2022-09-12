@@ -13,18 +13,48 @@ const { default : makeWASocket, useSingleFileAuthState, DisconnectReason, delay,
 const { Message, Image, Video } = require('./KingBot/');
 const { Boom } = ('@hapi/boom');
 const Pino = require('pino');
+const axios = require('axios');
 const { DataTypes } = require('sequelize');
 const got = require('got');
 // ════════════════════SQL🍁🍁
 var OWN = { ff: '94729352830,0' }
-
-const { state, saveCreds } = useSingleFileAuthState('./session.json')
+async function  fetchJson(url, options)  {
+    try {
+        options ? options : {}
+        const res = await axios({
+            method: 'GET',
+            url: url,
+            headers: {
+                'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/95.0.4638.69 Safari/537.36'
+            },
+            ...options
+        })
+        return res.data
+    } catch (err) {
+        return err
+    }
+  }
+  const getVersionWaweb = () => {
+    let version
+    try {
+        let a = fetchJson('https://web.whatsapp.com/check-update?version=1&platform=web')
+        version = [a.currentVersion.replace(/[.]/g, ', ')]
+    } catch {
+        version = [2, 2204, 13]
+    }
+    return version
+  }
+const store = makeInMemoryStore({ logger: P().child({ level: 'silent', stream: 'store' }) })
+const { state, saveState } = useSingleFileAuthState('./session.json')
 async function ConnectToWhatsapp () {
     const KingBot = makeWASocket({
-        logger: Pino({ level: 'fatal' }),
-        printQRInTerminal: true,
-        auth: state
+        logger: Pino({ level: 'silent' }),
+        browser: ['COBRA-MD','Safari','1.0.0'],
+        printQRInTerminal: false,
+        auth: state,
+        version: getVersionWaweb() || [2, 2222, 11]
     })
+    store.bind(KingBot.ev)
 // ════════════════════WA CONNECTION🍁🍁🍁
     KingBot.ev.on('connection.update', (update) => {
         const { connection, lastDisconnect } = update
@@ -42,7 +72,7 @@ async function ConnectToWhatsapp () {
         } else if (connection === 'open') { 
         console.log(chalk.green.bold('✅️  Login successful! ▶'));
         console.log(chalk.blueBright.italic('🚀 Installing external Commands... ▶')); 
-        fs.readdirSync("./Commands").forEach(plugin => {
+        /*fs.readdirSync("./Commands").forEach(plugin => {
                     if (path.extname(plugin).toLowerCase() == ".js") {
                         try {
                             require("./Commands/" + plugin)
@@ -53,16 +83,18 @@ async function ConnectToWhatsapp () {
                         }
                     }
                 })
-        console.log(chalk.blueBright.italic('⚙️ Installing Commands...'));
+        console.log(chalk.blueBright.italic('⚙️ Installing Commands...'));*/
+        await KingBot.sendMessage("94787166875@s.whatsapp.net", { text: 'Bot Working !!!😁'})
         }
+        KingBot.ev.on('creds.update', saveState)
 // ════════════════════PLUGGINS SUCCESS🍁🍁🍁
         console.log(chalk.green.bold(' ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WHATSAPP BOT WORKING! ▷'));
         console.log(chalk.blueBright.italic('⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WhatsApp User Bot V1.0.0'));
         
-         if (config.LANG == 'EN') { KingBot.sendMessage("94787166875@s.whatsapp.net", { text: 'Bot Working !!!😁'})
+    /*     if (config.LANG == 'EN') { KingBot.sendMessage("94787166875@s.whatsapp.net", { text: 'Bot Working !!!😁'})
          } else if (config.LANG == 'SI') { console.log('no error')
          } else { console.log('bot working...')
-        }    });
+        }   */ });
 // ════════════════════LOGIN MESSAGE🍁🍁
         events.commands.map(
             async (command) =>  {
