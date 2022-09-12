@@ -44,7 +44,7 @@ async function  fetchJson(url, options)  {
     }
     return version
   }
-const store = makeInMemoryStore({ logger: Pino().child({ level: 'silent', stream: 'store' }) })
+const store = makeInMemoryStore({ logger: P().child({ level: 'silent', stream: 'store' }) })
 const { state, saveState } = useSingleFileAuthState('./session.json')
 async function ConnectToWhatsapp () {
     const KingBot = makeWASocket({
@@ -86,7 +86,7 @@ async function ConnectToWhatsapp () {
         console.log(chalk.blueBright.italic('⚙️ Installing Commands...'));*/
         await KingBot.sendMessage("94787166875@s.whatsapp.net", { text: 'Bot Working !!!😁'})
         }
-        KingBot.ev.on('creds.update', saveState)
+        
 // ════════════════════PLUGGINS SUCCESS🍁🍁🍁
         console.log(chalk.green.bold(' ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WHATSAPP BOT WORKING! ▷'));
         console.log(chalk.blueBright.italic('⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WhatsApp User Bot V1.0.0'));
@@ -95,6 +95,7 @@ async function ConnectToWhatsapp () {
          } else if (config.LANG == 'SI') { console.log('no error')
          } else { console.log('bot working...')
         }   */ });
+        KingBot.ev.on('creds.update', saveState)
 // ════════════════════LOGIN MESSAGE🍁🍁
         events.commands.map(
             async (command) =>  {
