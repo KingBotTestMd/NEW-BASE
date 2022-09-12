@@ -72,7 +72,7 @@ async function ConnectToWhatsapp () {
         } else if (connection === 'open') { 
         console.log(chalk.green.bold('✅️  Login successful! ▶'));
         console.log(chalk.blueBright.italic('🚀 Installing external Commands... ▶')); 
-        /*fs.readdirSync("./Commands").forEach(plugin => {
+        fs.readdirSync("./Commands").forEach(plugin => {
                     if (path.extname(plugin).toLowerCase() == ".js") {
                         try {
                             require("./Commands/" + plugin)
@@ -83,8 +83,8 @@ async function ConnectToWhatsapp () {
                         }
                     }
                 })
-        console.log(chalk.blueBright.italic('⚙️ Installing Commands...'));*/
-        await KingBot.sendMessage("94787166875@s.whatsapp.net", { text: 'Bot Working !!!😁'})
+        console.log(chalk.blueBright.italic('⚙️ Installing Commands...'))
+        await KingBot.sendMessage(KingBot.user.id, { text: 'Bot Working !!!😁'})
         }
         
 // ════════════════════PLUGGINS SUCCESS🍁🍁🍁
