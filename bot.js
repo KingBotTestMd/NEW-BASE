@@ -56,7 +56,7 @@ async function ConnectToWhatsapp () {
     })
     store.bind(KingBot.ev)
 // ════════════════════WA CONNECTION🍁🍁🍁
-    KingBot.ev.on('connection.update', (update) => {
+    KingBot.ev.on('connection.update', async(update) => {
         const { connection, lastDisconnect } = update
         console.log(chalk.blueBright.italic('▷ Login information updated! ->'));
             if (connection === 'close') { console.log('connection Error🤕 !!!')
