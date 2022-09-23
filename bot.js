@@ -49,7 +49,7 @@ const { state, saveState } = useSingleFileAuthState('./session.json')
 async function ConnectToWhatsapp () {
     const KingBot = makeWASocket({
         logger: Pino({ level: 'silent' }),
-        browser: ['COBRA-MD','Safari','1.0.0'],
+        browser: ['SL-KING-X-MD','Chrome','1.0.0'],
         printQRInTerminal: false,
         auth: state,
         version: getVersionWaweb() || [2, 2222, 11]
@@ -72,17 +72,7 @@ async function ConnectToWhatsapp () {
         } else if (connection === 'open') { 
         console.log(chalk.green.bold('✅️  Login successful! ▶'));
         console.log(chalk.blueBright.italic('🚀 Installing external Commands... ▶')); 
-        fs.readdirSync("./Commands").forEach(plugin => {
-                    if (path.extname(plugin).toLowerCase() == ".js") {
-                        try {
-                            require("./Commands/" + plugin)
-                            require("./Commands/Updater.js")
-                        } catch (e) {
-                            console.log("Finding Errors... 🚫")
-                            console.log("\n" + chalk.blue("⚠️ Some Commands have errors >") + "\n\n🗒️ Plugin Name: " + chalk.green(plugin) + "\n🚫 Error: " + chalk.red(e) + "\n\n")
-                        }
-                    }
-                })
+        
         console.log(chalk.blueBright.italic('⚙️ Installing Commands...'))
         await KingBot.sendMessage(KingBot.user.id, { text: 'Bot Working !!!😁'})
         }
@@ -176,6 +166,15 @@ async function ConnectToWhatsapp () {
             }
         )
     };
+    
+    
+const {alive} = require('Commands/alive.js')
+
+switch (command ) {
+case 'alive':{
+      alive(KingBot, mek , q)
+}
+}
  // ════════════════════ERRROR MESSAGER🍁🍁🍁
  
 ConnectToWhatsapp();
