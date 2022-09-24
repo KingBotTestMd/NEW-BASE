@@ -8,7 +8,7 @@ const fs = require("fs");
 const path = require("path");
 const events = require("./events");
 const chalk = require('chalk');
-const config = require('./config');
+const Config = require('./config');
 const { default : makeWASocket, useSingleFileAuthState, DisconnectReason, delay, BufferJSON, WAConnection, makeInMemoryStore } = require('@adiwajshing/baileys');
 const { Message, Image, Video } = require('./KingBot/');
 const { Boom } = ('@hapi/boom');
@@ -101,8 +101,8 @@ async function ConnectToWhatsapp () {
         console.log(chalk.green.bold(' ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WHATSAPP BOT WORKING! ▷'));
         console.log(chalk.blueBright.italic('⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WhatsApp User Bot V1.0.0'));
         
-    /*     if (config.LANG == 'EN') { KingBot.sendMessage("94787166875@s.whatsapp.net", { text: 'Bot Working !!!😁'})
-         } else if (config.LANG == 'SI') { console.log('no error')
+    /*     if (Config.LANG == 'EN') { KingBot.sendMessage("94787166875@s.whatsapp.net", { text: 'Bot Working !!!😁'})
+         } else if (Config.LANG == 'SI') { console.log('no error')
          } else { console.log('bot working...')
         }   */ });
         KingBot.ev.on('creds.update', saveState)
@@ -133,8 +133,8 @@ async function ConnectToWhatsapp () {
                     let sendMsg = false;
                     var chat = KingBot.chats.get(msg.key.remoteJid)
                         
-                    if ((config.SUDO !== false && msg.key.fromMe === false && command.fromMe === true &&
-                        (msg.participant && config.SUDO.includes(',') ? config.SUDO.split(',').includes(msg.participant.split('@')[0]) : msg.participant.split('@')[0] == config.SUDO || config.SUDO.includes(',') ? config.SUDO.split(',').includes(msg.key.remoteJid.split('@')[0]) : msg.key.remoteJid.split('@')[0] == config.SUDO)
+                    if ((Config.SUDO !== false && msg.key.fromMe === false && command.fromMe === true &&
+                        (msg.participant && Config.SUDO.includes(',') ? Config.SUDO.split(',').includes(msg.participant.split('@')[0]) : msg.participant.split('@')[0] == Config.SUDO || Config.SUDO.includes(',') ? Config.SUDO.split(',').includes(msg.key.remoteJid.split('@')[0]) : msg.key.remoteJid.split('@')[0] == Config.SUDO)
                     ) || command.fromMe === msg.key.fromMe || (command.fromMe === false && !msg.key.fromMe)) {
                         if (command.onlyPinned && chat.pin === undefined) return;
                         if (!command.onlyPm === chat.jid.includes('-')) sendMsg = true;
@@ -150,7 +150,7 @@ async function ConnectToWhatsapp () {
                     }
 // ════════════════════SUDO🍁🍁
                     if (sendMsg) {
-                        if (config.SEND_READ && command.on === undefined) {
+                        if (Config.SEND_READ && command.on === undefined) {
                             await KingBot.chatRead(msg.key.remoteJid);
                         }
                        
@@ -173,9 +173,9 @@ async function ConnectToWhatsapp () {
                         try {
                             await command.function(whats, match);
                         } catch (error) {
-                            if (config.LANG == 'EN') {
+                            if (Config.LANG == 'EN') {
                                 console.log(error)
-                            } else if (config.LANG == 'SI') {
+                            } else if (Config.LANG == 'SI') {
                                 console.log(error)
                             } else {
                                 console.log(error)
