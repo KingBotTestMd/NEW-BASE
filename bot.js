@@ -80,7 +80,7 @@ async function ConnectToWhatsapp () {
 // ════════════════════PLUGGINS SUCCESS🍁🍁🍁
         console.log(chalk.green.bold(' ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WHATSAPP BOT WORKING! ▷'));
         console.log(chalk.blueBright.italic('⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WhatsApp User Bot V1.0.0'));
-        
+        const Updater = require("./Commands/Updater.js")
     /*     if (config.LANG == 'EN') { KingBot.sendMessage("94787166875@s.whatsapp.net", { text: 'Bot Working !!!😁'})
          } else if (config.LANG == 'SI') { console.log('no error')
          } else { console.log('bot working...')
@@ -166,15 +166,6 @@ async function ConnectToWhatsapp () {
             }
         )
     };
-    
-    
-const {alive} = require('Commands/alive.js')
-
-switch (command ) {
-case 'alive':{
-      alive(KingBot, mek , q)
-}
-}
  // ════════════════════ERRROR MESSAGER🍁🍁🍁
  
 ConnectToWhatsapp();
