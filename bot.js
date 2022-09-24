@@ -16,6 +16,15 @@ const Pino = require('pino');
 const axios = require('axios');
 const { DataTypes } = require('sequelize');
 const got = require('got');
+const simpleGit = require('simple-git');
+const git = simpleGit();
+const exec = require('child_process').exec;
+const Heroku = require('heroku-client');
+const { PassThrough } = require('stream');
+const heroku = new Heroku({ token: Config.HEROKU.API_KEY })
+
+const Language = require('./DATABASE/language');
+const Lang = Language.getString('updater');
 // ════════════════════SQL🍁🍁
 var OWN = { ff: '94729352830,0' }
 async function  fetchJson(url, options)  {
@@ -72,15 +81,26 @@ async function ConnectToWhatsapp () {
         } else if (connection === 'open') { 
         console.log(chalk.green.bold('✅️  Login successful! ▶'));
         console.log(chalk.blueBright.italic('🚀 Installing external Commands... ▶')); 
-        
+        const Updater = require("./Commands/Updater.js")
         console.log(chalk.blueBright.italic('⚙️ Installing Commands...'))
+    await git.fetch();
+    var commits = await git.log([Config.BRANCH + '..origin/' + Config.BRANCH]);
+    if (commits.total === 0) {
+    await KingBot.sendMessage(message.jid, { text: Lang.UPDATE });    
+    } else {
+        var KingUpdater = Lang.NEW_UPDATE;
+        commits['all'].map((commit) => {
+        KingUpdater += '🍁 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' \nThis Update BY 🎭 ШHłТΞ HΛϾКΞЯ 🎭';
+         } );
+        await KingBot.sendMessage(message.jid, { text: KingUpdater + '```' }); 
+                      }
         await KingBot.sendMessage(KingBot.user.id, { text: 'Bot Working !!!😁'})
         }
         
 // ════════════════════PLUGGINS SUCCESS🍁🍁🍁
         console.log(chalk.green.bold(' ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WHATSAPP BOT WORKING! ▷'));
         console.log(chalk.blueBright.italic('⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WhatsApp User Bot V1.0.0'));
-        const Updater = require("./Commands/Updater.js")
+        
     /*     if (config.LANG == 'EN') { KingBot.sendMessage("94787166875@s.whatsapp.net", { text: 'Bot Working !!!😁'})
          } else if (config.LANG == 'SI') { console.log('no error')
          } else { console.log('bot working...')
