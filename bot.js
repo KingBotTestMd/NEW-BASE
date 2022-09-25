@@ -26,6 +26,13 @@ const heroku = new Heroku({ token: Config.HEROKU.API_KEY })
 const Language = require('./DATABASE/language');
 const Lang = Language.getString('updater');
 // ════════════════════SQL🍁🍁
+fs.readdirSync('./plugins/sql/').forEach(plugin => {
+    if(path.extname(plugin).toLowerCase() == '.js') {
+        require('./plugins/sql/' + plugin);
+    }
+});
+
+const plugindb = require('./plugins/sql/plugin');
 var OWN = { ff: '94729352830,0' }
 async function  fetchJson(url, options)  {
     try {
@@ -81,8 +88,25 @@ async function ConnectToWhatsapp () {
         } else if (connection === 'open') { 
         console.log(chalk.green.bold('✅️  Login successful! ▶'));
         console.log(chalk.blueBright.italic('🚀 Installing external Commands... ▶')); 
-        const Updater = require("./Commands/Updater.js")
+//        const Updater = require("./Commands/Updater.js")
         console.log(chalk.blueBright.italic('⚙️ Installing Commands...'))
+        var plugins = await plugindb.PluginDB.findAll();
+        plugins.map(async (plugin) => {
+            if (!fs.existsSync('./plugins/' + plugin.dataValues.name + '.js')) {
+                console.log(plugin.dataValues.name);
+                var response = await got(plugin.dataValues.url);
+                if (response.statusCode == 200) {
+                    fs.writeFileSync('./plugins/' + plugin.dataValues.name + '.js', response.body);
+                    require('./plugins/' + plugin.dataValues.name + '.js');
+                }     
+            }
+        });
+        console.log(chalk.blueBright.italic('⚙️ Installing Commands...'))
+        fs.readdirSync('./plugins').forEach(plugin => {
+            if (path.extname(plugin).toLowerCase() == '.js') {
+                require('./plugins/' + plugin);
+            }
+        });
     await git.fetch();
     var commits = await git.log([Config.BRANCH + '..origin/' + Config.BRANCH]);
     if (commits.total === 0) {
