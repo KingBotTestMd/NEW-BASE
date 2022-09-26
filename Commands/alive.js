@@ -10,7 +10,7 @@ Coded By  Sisula welgamage | 2022/08/08 Main Release | Docker Image : sisula/wha
 */
 const {addCMD} = require('cobra-event-emit').events;
 
-addCMD({pattern: 'test', desc: '', fromMe: true}, (async (message,  match) => {
+addCMD({pattern: 'test$', desc: '', fromMe: true}, (async (message,  match) => {
           await message.client.sendMessage(message.jid, {text: "Hello Bot Is Working !!! Sisula Welgamage"}, {quoted: message.data})
 
 }))
