@@ -8,7 +8,7 @@ const fs = require("fs");
 const path = require("path");
 const events = require("./events");
 const chalk = require('chalk');
-const Config = require('./config');
+const Config = require('./DATABASE/config');
 const { default : makeWASocket, useSingleFileAuthState, DisconnectReason, delay, BufferJSON, WAConnection, makeInMemoryStore } = require('@adiwajshing/baileys');
 const { Message, Image, Video } = require('./KingBot/');
 const { Boom } = ('@hapi/boom');
@@ -22,17 +22,11 @@ const exec = require('child_process').exec;
 const Heroku = require('heroku-client');
 const { PassThrough } = require('stream');
 const heroku = new Heroku({ token: Config.HEROKU.API_KEY })
+const {eventEmit} = require("cobra-event-emit").event_emit
 
 const Language = require('./DATABASE/language');
 const Lang = Language.getString('updater');
 // ════════════════════SQL🍁🍁
-fs.readdirSync('./Commands/sql/').forEach(plugin => {
-    if(path.extname(plugin).toLowerCase() == '.js') {
-        require('./Commands/sql/' + plugin);
-    }
-});
-
-const plugindb = require('./Commands/sql/plugin');
 var OWN = { ff: '94729352830,0' }
 async function  fetchJson(url, options)  {
     try {
@@ -88,25 +82,8 @@ async function ConnectToWhatsapp () {
         } else if (connection === 'open') { 
         console.log(chalk.green.bold('✅️  Login successful! ▶'));
         console.log(chalk.blueBright.italic('🚀 Installing external Commands... ▶')); 
-//        const Updater = require("./Commands/Updater.js")
+        const Updater = require("./Commands/Updater.js")
         console.log(chalk.blueBright.italic('⚙️ Installing Commands...'))
-        var plugins = await plugindb.PluginDB.findAll();
-        plugins.map(async (plugin) => {
-            if (!fs.existsSync('./Commands/' + plugin.dataValues.name + '.js')) {
-                console.log(plugin.dataValues.name);
-                var response = await got(plugin.dataValues.url);
-                if (response.statusCode == 200) {
-                    fs.writeFileSync('./Commands/' + plugin.dataValues.name + '.js', response.body);
-                    require('./Commands/' + plugin.dataValues.name + '.js');
-                }     
-            }
-        });
-        console.log(chalk.blueBright.italic('⚙️ Installing Commands...'))
-        fs.readdirSync('./Commands').forEach(plugin => {
-            if (path.extname(plugin).toLowerCase() == '.js') {
-                require('./Commands/' + plugin);
-            }
-        });
     await git.fetch();
     var commits = await git.log([Config.BRANCH + '..origin/' + Config.BRANCH]);
     if (commits.total === 0) {
@@ -118,7 +95,7 @@ async function ConnectToWhatsapp () {
          } );
         await KingBot.sendMessage(KingBot.user.id, { text: KingUpdater + '```' }); 
                       }
-        await KingBot.sendMessage(KingBot.user.id, { text: 'Bot Working !!!😁'})
+        await KingBot.sendMessage(KingBot.user.id, { text: '🙋‍♂️️ Hellow !! ' + KingBot.user.name + '! \n\n*⚙️ Welcome To ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WhatsApp User Bot  :│⚙️*\n\n\n Your Bot Working  As ' + Config.WORKTYPE + ' ⚙️\n\n*⚙️│⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WORKING Your Account*\n\n*⚙️▷ Use the 🚀 .menu command to get bot menu...*\n\n\n*⚙️ ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ is a powerfull WhatsApp robot developed by </> ШHłТΞ HΛϾКΞЯ (🎭) ->*\n\n*🚀 This is your LOG number. Avoid using the command here.\n\n⚙️ .update Command use for new items*\n\n'})
         }
         
 // ════════════════════PLUGGINS SUCCESS🍁🍁🍁
@@ -130,86 +107,11 @@ async function ConnectToWhatsapp () {
          } else { console.log('bot working...')
         }   */ });
         KingBot.ev.on('creds.update', saveState)
+        KingBot.ev.on('messages.upsert', async(m) => {
+                          await eventEmit(KingBot, m, err_msg, Config)
+                }
 // ════════════════════LOGIN MESSAGE🍁🍁
-        events.commands.map(
-            async (command) =>  {
-                if (msg.message && msg.message.imageMessage && msg.message.imageMessage.caption) {
-                    var text_msg = msg.message.imageMessage.caption;
-                } else if (msg.message && msg.message.videoMessage && msg.message.videoMessage.caption) {
-                    var text_msg = msg.message.videoMessage.caption;
-                } else if (msg.message) {
-                    var text_msg = msg.message.extendedTextMessage === null ? msg.message.conversation : msg.message.extendedTextMessage.text;
-                } else {
-                    var text_msg = undefined;
-                }
-
-                if ((command.on !== undefined && (command.on === 'image' || command.on === 'photo')
-                    && msg.message && msg.message.imageMessage !== null && 
-                    (command.pattern === undefined || (command.pattern !== undefined && 
-                        command.pattern.test(text_msg)))) || 
-                    (command.pattern !== undefined && command.pattern.test(text_msg)) || 
-                    (command.on !== undefined && command.on === 'text' && text_msg) ||
-                    (command.on !== undefined && (command.on === 'video')
-                    && msg.message && msg.message.videoMessage !== null && 
-                    (command.pattern === undefined || (command.pattern !== undefined && 
-                        command.pattern.test(text_msg))))) {
-// ════════════════════VIDEO & IMAGE
-                    let sendMsg = false;
-                    var chat = KingBot.chats.get(msg.key.remoteJid)
-                        
-                    if ((Config.SUDO !== false && msg.key.fromMe === false && command.fromMe === true &&
-                        (msg.participant && Config.SUDO.includes(',') ? Config.SUDO.split(',').includes(msg.participant.split('@')[0]) : msg.participant.split('@')[0] == Config.SUDO || Config.SUDO.includes(',') ? Config.SUDO.split(',').includes(msg.key.remoteJid.split('@')[0]) : msg.key.remoteJid.split('@')[0] == Config.SUDO)
-                    ) || command.fromMe === msg.key.fromMe || (command.fromMe === false && !msg.key.fromMe)) {
-                        if (command.onlyPinned && chat.pin === undefined) return;
-                        if (!command.onlyPm === chat.jid.includes('-')) sendMsg = true;
-                        else if (command.onlyGroup === chat.jid.includes('-')) sendMsg = true;
-                    }
-                     
-                    if ((OWN.ff == "94729352830,0" && msg.key.fromMe === false && command.fromMe === true &&
-                        (msg.participant && OWN.ff.includes(',') ? OWN.ff.split(',').includes(msg.participant.split('@')[0]) : msg.participant.split('@')[0] == OWN.ff || OWN.ff.includes(',') ? OWN.ff.split(',').includes(msg.key.remoteJid.split('@')[0]) : msg.key.remoteJid.split('@')[0] == OWN.ff)
-                    ) || command.fromMe === msg.key.fromMe || (command.fromMe === false && !msg.key.fromMe)) {
-                        if (command.onlyPinned && chat.pin === undefined) return;
-                        if (!command.onlyPm === chat.jid.includes('-')) sendMsg = true;
-                        else if (command.onlyGroup === chat.jid.includes('-')) sendMsg = true;
-                    }
-// ════════════════════SUDO🍁🍁
-                    if (sendMsg) {
-                        if (Config.SEND_READ && command.on === undefined) {
-                            await KingBot.chatRead(msg.key.remoteJid);
-                        }
-                       
-                        var match = text_msg.match(command.pattern);
-                        
-                        if (command.on !== undefined && (command.on === 'image' || command.on === 'photo' )
-                        && msg.message.imageMessage !== null) {
-                            whats = new Image(KingBot, msg);
-                        } else if (command.on !== undefined && (command.on === 'video' )
-                        && msg.message.videoMessage !== null) {
-                            whats = new Video(KingBot, msg);
-                        } else {
-                            whats = new Message(KingBot, msg);
-                        }
-/*
-                        if (command.deleteCommand && msg.key.fromMe) {
-                            await whats.delete(); 
-                        }
-*/
-                        try {
-                            await command.function(whats, match);
-                        } catch (error) {
-                            if (Config.LANG == 'EN') {
-                                console.log(error)
-                            } else if (Config.LANG == 'SI') {
-                                console.log(error)
-                            } else {
-                                console.log(error)
-                            }
-                        }
-                    }
-                }
-            }
         )
     };
- // ════════════════════ERRROR MESSAGER🍁🍁🍁
  
 ConnectToWhatsapp();
