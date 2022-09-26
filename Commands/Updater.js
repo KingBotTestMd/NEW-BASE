@@ -2,7 +2,7 @@
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
 ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ MD BOT
-*/
+
 
 const simpleGit = require('simple-git');
 const git = simpleGit();
@@ -75,3 +75,7 @@ addCMD({pattern: 'update now$', fromMe: true, desc: Lang.UPDATE_NOW_DESC}, (asyn
         }
     }
 }));
+
+
+
+*/
