@@ -16,6 +16,7 @@ const Pino = require('pino');
 const axios = require('axios');
 const { DataTypes } = require('sequelize');
 const got = require('got');
+const {err_msg} =  require("./err_msg")
 const simpleGit = require('simple-git');
 const git = simpleGit();
 const exec = require('child_process').exec;
