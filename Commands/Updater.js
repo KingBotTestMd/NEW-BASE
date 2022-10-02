@@ -40,7 +40,7 @@ addCMD({pattern: 'update now$', fromMe: true, desc: Lang.UPDATE_NOW_DESC}, (asyn
     if (commits.total === 0) {
         return await message.client.sendMessage(message.jid, { text: Lang.UPDATE });    
     } else {
-        var guncelleme = await message.reply(Lang.UPDATING);
+        var guncelleme = await message.client.sendMessage(message.jid, { text: Lang.UPDATING });
         if (Config.HEROKU.HEROKU) {
             try {
                 var app = await heroku.get('/apps/' + Config.HEROKU.APP_NAME)
