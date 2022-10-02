@@ -20,13 +20,6 @@ const {eventEmit} = require("cobra-event-emit").event_emit
 
 const Language = require('./DATABASE/language');
 const Lang = Language.getString('updater');
-fs.readdirSync('./Commands/sql/').forEach(plugin => {
-    if(path.extname(plugin).toLowerCase() == '.js') {
-        require('./Commands/sql/' + plugin);
-    }
-});
-
-const plugindb = require('./Commands/sql/plugin')
 
 // ════════════════════SQL🍁🍁
 async function  fetchJson(url, options)  {
@@ -83,35 +76,17 @@ async function ConnectToWhatsapp () {
                 else { console.log(`Unknown DisconnectReason: ${reason}|${connection}`) }
         } else if (connection === 'open') { 
         console.log(chalk.green.bold('✅️  Login successful! ▶'));
-        console.log(chalk.blueBright.italic('🚀 Installing Internel Commands... ▶')); 
-        var plugins = await plugindb.PluginDB.findAll();
-        plugins.map(async (plugin) => {
-            if (!fs.existsSync('./Commands/' + plugin.dataValues.name + '.js')) {
-                console.log(plugin.dataValues.name);
-                var response = await got(plugin.dataValues.url);
-                if (response.statusCode == 200) {
-                    fs.writeFileSync('./Commands/' + plugin.dataValues.name + '.js', response.body);
-                    require('./Commands/' + plugin.dataValues.name + '.js');
-                }     
+        console.log(chalk.blueBright.italic('⚙️ Installing Commands...'))
+        fs.readdirSync('./plugins').forEach(plugin => {
+            if(path.extname(plugin).toLowerCase() == '.js') {
+                require('./plugins/' + plugin);
             }
         });
-        console.log(chalk.blueBright.italic('⚙️ Installing Commands...'))
-        await git.fetch();
-        var commits = await git.log([Config.BRANCH + '..origin/' + Config.BRANCH]);
-      if (commits.total === 0) {
-        await KingBot.sendMessage(KingBot.user.id, { text: Lang.UPDATE });    
-    } else {
-            var KingUpdater = Lang.NEW_UPDATE;
-            commits['all'].map((commit) => {
-            KingUpdater += '🍁 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' \nThis Update BY 🎭 ШHłТΞ HΛϾКΞЯ 🎭';
-            });
-            await KingBot.sendMessage(KingBot.user.id, { text: KingUpdater + '```' })}
+        console.log(chalk.green.bold(' ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WHATSAPP BOT WORKING! ▷'));
+        console.log(chalk.blueBright.italic('⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WhatsApp User Bot V1.0.0'));  
             await KingBot.sendMessage(KingBot.user.id, { text: '🙋‍♂️️ Hellow !! ' + KingBot.user.name + '! \n\n*⚙️ Welcome To ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WhatsApp User Bot  :│⚙️*\n\n\n Your Bot Working  As ' + Config.WORKTYPE + ' ⚙️\n\n*⚙️│⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WORKING Your Account*\n\n*⚙️▷ Use the 🚀 .menu command to get bot menu...*\n\n\n*⚙️ ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ is a powerfull WhatsApp robot developed by </> ШHłТΞ HΛϾКΞЯ (🎭) ->*\n\n*🚀 This is your LOG number. Avoid using the command here.\n\n⚙️ .update Command use for new items*\n\n'})
         }
-        
-// ════════════════════PLUGGINS SUCCESS🍁🍁🍁
-        console.log(chalk.green.bold(' ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WHATSAPP BOT WORKING! ▷'));
-        console.log(chalk.blueBright.italic('⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WhatsApp User Bot V1.0.0'));
+
         });
         KingBot.ev.on('creds.update', saveState)
         KingBot.ev.on('messages.upsert', async(m) => {
