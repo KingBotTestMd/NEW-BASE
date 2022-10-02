@@ -77,9 +77,9 @@ async function ConnectToWhatsapp () {
         } else if (connection === 'open') { 
         console.log(chalk.green.bold('✅️  Login successful! ▶'));
         console.log(chalk.blueBright.italic('⚙️ Installing Commands...'))
-        fs.readdirSync('./plugins').forEach(plugin => {
+        fs.readdirSync('./Commands').forEach(plugin => {
             if(path.extname(plugin).toLowerCase() == '.js') {
-                require('./plugins/' + plugin);
+                require('./Commands/' + plugin);
             }
         });
         console.log(chalk.green.bold(' ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WHATSAPP BOT WORKING! ▷'));
