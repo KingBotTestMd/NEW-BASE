@@ -29,7 +29,7 @@
         "BOT_NAME": {
         "description": "",
         "required": true,
-        "value":"[🇱🇰𝚱𝚰𝚴Ｇ 𝛃𝚯𝚪🤘] ᎷᎠ"
+        "value":"⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ - ᎷᎠ"
          },
         "HEROKU": {
         "description": "",
@@ -68,6 +68,11 @@
         "description": "",
         "required": true,
         "value":"_*I'm Uploading your video*_ ✨➾🎲"
+         },
+        "WORK_TYPE": {
+        "description": "",
+        "required": true,
+        "value":"public"
          }
    },
     "addons": [{
