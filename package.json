@@ -34,7 +34,7 @@
     "dependencies": {
         "@adiwajshing/baileys": "4.4.0",
         "@adiwajshing/keyed-db": "^0.2.4",
-        "cobra-event-emit": "^1.0.6",
+        "cobra-event-emit": "^1.0.7",
         "network-speed": "2.1.1",
         "@octokit/core": "3.5.1",
         "wa-sticker-formatter": "^4.3.2",
