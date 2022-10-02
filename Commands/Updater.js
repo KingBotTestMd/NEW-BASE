@@ -2,11 +2,11 @@
 Licensed under the  GPL-3.0 License;
 you may not use this file except in compliance with the License.
 ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ MD BOT
-
+*/
 
 const simpleGit = require('simple-git');
 const git = simpleGit();
-const {addCMD} = require("cobra-event-emit").events
+const {addCMD} = require("cobra-event-emit").events;
 const Config = require('../DATABASE/config');
 const exec = require('child_process').exec;
 const Heroku = require('heroku-client');
@@ -21,7 +21,7 @@ addCMD({pattern: 'update$', fromMe: true, desc: Lang.UPDATER_DESC}, (async (mess
     await git.fetch();
     var commits = await git.log([Config.BRANCH + '..origin/' + Config.BRANCH]);
     if (commits.total === 0) {
-        await KingBot.sendMessage(message.jid, { text: Lang.UPDATE });    
+        await message.client.sendMessage(message.jid, { text: Lang.UPDATE });    
     } else {
         var KingUpdater = Lang.NEW_UPDATE;
         commits['all'].map(
@@ -30,7 +30,7 @@ addCMD({pattern: 'update$', fromMe: true, desc: Lang.UPDATER_DESC}, (async (mess
             }
         );
         
-        await KingBot.sendMessage(message.jid, { text: KingUpdater + '```' }); 
+        await message.client.sendMessage(message.jid, { text: KingUpdater + '```' }); 
                       }
 }));
 
@@ -38,16 +38,16 @@ addCMD({pattern: 'update now$', fromMe: true, desc: Lang.UPDATE_NOW_DESC}, (asyn
     await git.fetch();
     var commits = await git.log([Config.BRANCH + '..origin/' + Config.BRANCH]);
     if (commits.total === 0) {
-        return await KingBot.sendMessage(message.jid, { text: Lang.UPDATE });    
+        return await message.client.sendMessage(message.jid, { text: Lang.UPDATE });    
     } else {
         var guncelleme = await message.reply(Lang.UPDATING);
         if (Config.HEROKU.HEROKU) {
             try {
                 var app = await heroku.get('/apps/' + Config.HEROKU.APP_NAME)
             } catch {
-                await KingBot.sendMessage(message.jid, { text: Lang.INVALID_HEROKU });
+                await message.client.sendMessage(message.jid, { text: Lang.INVALID_HEROKU });
                 await new Promise(r => setTimeout(r, 1000));
-                return await KingBot.sendMessage(message.jid, { text: Lang.IN_AF });
+                return await message.client.sendMessage(message.jid, { text: Lang.IN_AF });
             }
 
             git.fetch('upstream', Config.BRANCH);
@@ -59,23 +59,19 @@ addCMD({pattern: 'update now$', fromMe: true, desc: Lang.UPDATE_NOW_DESC}, (asyn
             } catch { console.log('heroku remote ekli'); }
             await git.push('heroku', Config.BRANCH);
 
-            await KingBot.sendMessage(message.jid, { text: Lang.UPDATED });
+            await message.client.sendMessage(message.jid, { text: Lang.UPDATED });
             await message.sendMessage(Lang.AFTER_UPDATE);
             
         } else {
             git.pull((async (err, update) => {
                 if(update && update.summary.changes) {
-                    await KingBot.sendMessage(message.jid, { text: Lang.UPDATED_LOCAL });
+                    await message.client.sendMessage(message.jid, { text: Lang.UPDATED_LOCAL });
                     exec('npm install').stderr.pipe(process.stderr);
                 } else if (err) {
-                    await KingBot.sendMessage(message.jid, { text: '*❌ Have a Error write our support group get more help*\n*Hata:* ```' + err + '```' });
+                    await message.client.sendMessage(message.jid, { text: '*❌ Have a Error write our support group get more help*\n*Hata:* ```' + err + '```' });
                 }
             }));
             await guncelleme.delete();
         }
     }
 }));
-
-
-
-*/
