@@ -58,6 +58,7 @@ async function  fetchJson(url, options)  {
 const store = makeInMemoryStore({ logger: Pino().child({ level: 'silent', stream: 'store' }) })
 const { state, saveState } = useSingleFileAuthState('./session.json')
 async function ConnectToWhatsapp () {
+    await Config.DATABASE.sync();
     const KingBot = makeWASocket({
         logger: Pino({ level: 'silent' }),
         browser: ['SL-KING-X-MD','Chrome','1.0.0'],
