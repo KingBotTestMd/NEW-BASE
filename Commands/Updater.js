@@ -60,7 +60,7 @@ addCMD({pattern: 'update now$', fromMe: true, desc: Lang.UPDATE_NOW_DESC}, (asyn
             await git.push('heroku', Config.BRANCH);
 
             await message.client.sendMessage(message.jid, { text: Lang.UPDATED });
-            await message.client.sendMessage(Lang.AFTER_UPDATE);
+            await message.client.sendMessage(message.jid, { text: Lang.AFTER_UPDATE });
             
         } else {
             git.pull((async (err, update) => {
