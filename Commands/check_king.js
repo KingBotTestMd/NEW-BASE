@@ -8,7 +8,7 @@ const {addCMD} = require('cobra-event-emit').events;
 const Config = require('../config');
 
 
-KingBot.KingXCMD({pattern: 'check', fromMe: true, deleteCommand: true, desc: 'check Your SL KING X Bot...   Do not use this command.👿',}, (async (message, match) => {
+addCMD({pattern: 'check', fromMe: true, deleteCommand: true, desc: 'check Your SL KING X Bot...   Do not use this command.👿',}, (async (message, match) => {
 
     await message.client.sendMessage(message.jid, { text: '🎲 𝙲𝙷𝙴𝙲𝙺𝙸𝙽𝙶 ->' });
     await message.client.sendMessage(message.jid, { text: '*⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ 𝚆𝙷𝙰𝚃𝚂𝙰𝙿𝙿 𝚄𝚂𝙴𝚁 𝙱𝙾𝚃 𝚅1.0.0 🔥*' });
