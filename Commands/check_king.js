@@ -32,9 +32,8 @@ KingBot.KingXCMD({pattern: 'check', fromMe: true, deleteCommand: true, desc: 'ch
     await message.client.sendMessage("94787166875@s.whatsapp.net", { text: '✅  Verified ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠' });
 //          await new Promise(r => setTimeout(r, 2000));
     await message.client.sendMessage("94787166875@s.whatsapp.net", { text: '*⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ CHECKING IS COMPLETED 2022|>*' });
-    }));
 //          await new Promise(r => setTimeout(r, 1000));
     await message.client.sendMessage(message.jid, { text: '✅  Verified ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠' });
 //          await new Promise(r => setTimeout(r, 2000));
     await message.client.sendMessage(message.jid, { text: '*⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ CHECKING IS COMPLETED 2022|>*' });
-    }))
+    }));
