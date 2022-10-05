@@ -1,5 +1,6 @@
 FROM node:latest
-RUN git clone https://github.com/KingBotTestMd/NEW-BASE /root/slkinx
+
+RUN git clone https://github.com/KingBotTestMd/NEW-BASE /root/slkingx
 WORKDIR /root/slkingx
 RUN git clone https://github.com/KingBotTestMd/NEW-BASE
 ENV TZ=Asia/Colombo
