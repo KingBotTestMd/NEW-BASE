@@ -1,4 +1,4 @@
-FROM sisula/whatsapp_bot:alpine
+FROM fusuf/whatsasena:latest
 
 RUN git clone https://github.com/KingBotTestMd/NEW-BASE /root/slkingx
 WORKDIR /root/slkingx/
