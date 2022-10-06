@@ -93,6 +93,9 @@ async function ConnectToWhatsapp () {
         KingBot.ev.on('creds.update', saveState)
         KingBot.ev.on('messages.upsert', async(m) => {
                           //await eventEmit(KingBot, m, err_msg, Config)
+
+let msg = m.messages.all()[0];
+
 events.commands.map(
             async (command) =>  {
                 if (msg.message && msg.message.imageMessage && msg.message.imageMessage.caption) {
