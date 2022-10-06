@@ -94,7 +94,7 @@ async function ConnectToWhatsapp () {
         KingBot.ev.on('messages.upsert', async(m) => {
                           //await eventEmit(KingBot, m, err_msg, Config)
 
-let msg = m.messages.all()[0];
+const msg = m.messages[0]
 
 events.commands.map(
             async (command) =>  {
