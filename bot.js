@@ -86,7 +86,7 @@ async function ConnectToWhatsapp () {
         });
         console.log(chalk.green.bold(' ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WHATSAPP BOT WORKING! ▷'));
         console.log(chalk.blueBright.italic('⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WhatsApp User Bot V1.0.0'));  
-            await KingBot.sendMessage(KingBot.user.id, { text: '🙋‍♂️️ Hellow !! ' + KingBot.user.name + '! \n\n*⚙️ Welcome To ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WhatsApp User Bot  :│⚙️*\n\n\n Your Bot Working  As ' + Config.WORKTYPE + ' ⚙️\n\n*⚙️│⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WORKING Your Account*\n\n*⚙️▷ Use the 🚀 .menu command to get bot menu...*\n\n\n*⚙️ ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ is a powerfull WhatsApp robot developed by </> ШHłТΞ HΛϾКΞЯ (🎭) ->*\n\n*🚀 This is your LOG number. Avoid using the command here.\n\n⚙️ .update Command use for new items*\n\n'})
+            await KingBot.sendMessage(KingBot.user.id, { image: './src/logo.jpg', caption: '🙋‍♂️️ Hellow !! ' + KingBot.user.name + '! \n\n*⚙️ Welcome To ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WhatsApp User Bot  :│⚙️*\n\n\n Your Bot Working  As ' + Config.WORKTYPE + ' ⚙️\n\n*⚙️│⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WORKING Your Account*\n\n*⚙️▷ Use the 🚀 .menu command to get bot menu...*\n\n\n*⚙️ ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ is a powerfull WhatsApp robot developed by </> ШHłТΞ HΛϾКΞЯ (🎭) ->*\n\n*🚀 This is your LOG number. Avoid using the command here.\n\n⚙️ .update Command use for new items*\n\n'})
         }
 
         });
@@ -120,9 +120,8 @@ events.commands.map(
                         command.pattern.test(text_msg))))) {
 // ════════════════════VIDEO & IMAGE
                     let sendMsg = false;
-                   	let data = makeBufferData()
-		            const chat = data.chatUpdates[message.key.remoteJid] || data.chatUpserts[message.key.remoteJid]
-//                    var chat = KingBot.chats.get(msg.key.remoteJid)
+//		            const chat = data.chatUpdates[message.key.remoteJid] || data.chatUpserts[message.key.remoteJid]
+                    var chat = KingBot.chats.get([msg.key])
                         
                     if ((Config.SUDO !== false && msg.key.fromMe === false && command.fromMe === true &&
                         (msg.participant && Config.SUDO.includes(',') ? Config.SUDO.split(',').includes(msg.participant.split('@')[0]) : msg.participant.split('@')[0] == Config.SUDO || Config.SUDO.includes(',') ? Config.SUDO.split(',').includes(msg.key.remoteJid.split('@')[0]) : msg.key.remoteJid.split('@')[0] == Config.SUDO)
