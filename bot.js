@@ -9,7 +9,7 @@ const path = require("path");
 const chalk = require('chalk');
 const Config = require('./DATABASE/config');
 const events = require('./DATABASE/events');
-const { default : makeWASocket, useSingleFileAuthState, DisconnectReason, delay, BufferJSON, WAConnection, makeInMemoryStore } = require('@adiwajshing/baileys');
+const { default : makeWASocket, useSingleFileAuthState, DisconnectReason, delay, BufferJSON, WAConnection, makeInMemoryStore, makeBufferData } = require('@adiwajshing/baileys');
 const { Boom } = ('@hapi/boom');
 const Pino = require('pino');
 const axios = require('axios');
@@ -93,7 +93,7 @@ async function ConnectToWhatsapp () {
         KingBot.ev.on('creds.update', saveState)
         KingBot.ev.on('messages.upsert', async(m) => {
                           //await eventEmit(KingBot, m, err_msg, Config)
-
+                          
 const msg = m.messages[0]
 
 events.commands.map(
@@ -120,7 +120,10 @@ events.commands.map(
                         command.pattern.test(text_msg))))) {
 // ════════════════════VIDEO & IMAGE
                     let sendMsg = false;
-                    var chat = KingBot.chats.get(msg.key.remoteJid)
+              		const chatId = message.key.remoteJid!
+                   	let data = makeBufferData()
+		            const chat = data.chatUpdates[chatId] || data.chatUpserts[chatId]
+//                    var chat = KingBot.chats.get(msg.key.remoteJid)
                         
                     if ((Config.SUDO !== false && msg.key.fromMe === false && command.fromMe === true &&
                         (msg.participant && Config.SUDO.includes(',') ? Config.SUDO.split(',').includes(msg.participant.split('@')[0]) : msg.participant.split('@')[0] == Config.SUDO || Config.SUDO.includes(',') ? Config.SUDO.split(',').includes(msg.key.remoteJid.split('@')[0]) : msg.key.remoteJid.split('@')[0] == Config.SUDO)
