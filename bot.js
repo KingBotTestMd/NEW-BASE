@@ -120,9 +120,8 @@ events.commands.map(
                         command.pattern.test(text_msg))))) {
 // ════════════════════VIDEO & IMAGE
                     let sendMsg = false;
-              		const chatId = message.key.remoteJid
                    	let data = makeBufferData()
-		            const chat = data.chatUpdates[chatId] || data.chatUpserts[chatId]
+		            const chat = data.chatUpdates[message.key.remoteJid] || data.chatUpserts[message.key.remoteJid]
 //                    var chat = KingBot.chats.get(msg.key.remoteJid)
                         
                     if ((Config.SUDO !== false && msg.key.fromMe === false && command.fromMe === true &&
