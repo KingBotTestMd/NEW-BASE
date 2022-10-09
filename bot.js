@@ -86,7 +86,7 @@ async function ConnectToWhatsapp () {
         });
         console.log(chalk.green.bold(' ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WHATSAPP BOT WORKING! ▷'));
         console.log(chalk.blueBright.italic('⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WhatsApp User Bot V1.0.0'));  
-            await KingBot.sendMessage(KingBot.user.id, { text: '🙋‍♂️️ Hellow !! ' + KingBot.user.name + '! \n\n*⚙️ Welcome To ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WhatsApp User Bot  :│⚙️*\n\n\n Your Bot Working  As ' + Config.WORKTYPE + ' ⚙️\n\n*⚙️│⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WORKING Your Account*\n\n*⚙️▷ Use the 🚀 .menu command to get bot menu...*\n\n\n*⚙️ ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ is a powerfull WhatsApp robot developed by </> ШHłТΞ HΛϾКΞЯ (🎭) ->*\n\n*🚀 This is your LOG number. Avoid using the command here.\n\n⚙️ .update Command use for new items*\n\n'})
+            await KingBot.sendMessage(KingBot.user.id, { image: { url: './src/logo.jpg' }, caption: '🙋‍♂️️ Hellow !! ' + KingBot.user.name + '! \n\n*⚙️ Welcome To ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WhatsApp User Bot  :│⚙️*\n\n\n Your Bot Working  As ' + Config.WORKTYPE + ' ⚙️\n\n*⚙️│⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WORKING Your Account*\n\n*⚙️▷ Use the 🚀 .menu command to get bot menu...*\n\n\n*⚙️ ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ is a powerfull WhatsApp robot developed by </> ШHłТΞ HΛϾКΞЯ (🎭) ->*\n\n*🚀 This is your LOG number. Avoid using the command here.\n\n⚙️ .update Command use for new items*\n\n'})
         }
 
         });
@@ -121,7 +121,7 @@ events.commands.map(
 // ════════════════════VIDEO & IMAGE
                     let sendMsg = false;
 //		            const chat = data.chatUpdates[message.key.remoteJid] || data.chatUpserts[message.key.remoteJid]
-                    var chat = KingBot.chats.get([msg.key])
+/*                    var chat = KingBot.chats.get([msg.key])
                         
                     if ((Config.SUDO !== false && msg.key.fromMe === false && command.fromMe === true &&
                         (msg.participant && Config.SUDO.includes(',') ? Config.SUDO.split(',').includes(msg.participant.split('@')[0]) : msg.participant.split('@')[0] == Config.SUDO || Config.SUDO.includes(',') ? Config.SUDO.split(',').includes(msg.key.remoteJid.split('@')[0]) : msg.key.remoteJid.split('@')[0] == Config.SUDO)
@@ -137,7 +137,7 @@ events.commands.map(
                         if (command.onlyPinned && chat.pin === undefined) return;
                         if (!command.onlyPm === chat.jid.includes('-')) sendMsg = true;
                         else if (command.onlyGroup === chat.jid.includes('-')) sendMsg = true;
-                    }
+                    }*/
 // ════════════════════SUDO🍁🍁
                     if (sendMsg) {
                         if (Config.SEND_READ && command.on === undefined) {
@@ -165,9 +165,7 @@ events.commands.map(
                             await command.function(whats, match);
                         } catch (error) {
                             if (Config.LANG == 'EN') {
-                            console.log('Error ! 😂')
-                         //  ------->     await KingBot.sendMessage(KingBot.user.jid, fs.readFileSync("./src/cd6032c65c27e0510ddad.jpg"), MessageType.image, { caption: '[🇱🇰𝚱𝚰𝚴Ｇ 𝛃𝚯𝚪🤘] WhatsApp User Bot  WORKING AS '+Config.WORKTYPE+'!!\n\n▷ _This is your LOG number Dont Try Command here_\n▷Also You Can join Our Support group More Help.\n_🖲️Support 01▷ https://chat.whatsapp.com/EmxfOklzLVIIyDEKPx4IYj\n\n*Error:* ```' + error + '```\n\n' });
-                                
+/*  ------->  */ await KingBot.sendMessage(KingBot.user.jid, { text: '⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WhatsApp User Bot,\n\n\nWORKING AS ' + Config.WORKTYPE + '!!\n\n▷ _This is your LOG number Dont Try Command here_\n🎭 Also You Can join Our Support group More Help.\n_🖲️Support 01▷ https://chat.whatsapp.com/\n\n*Error:* ```' + error + '```\n\n' });
                             } else if (Config.LANG == 'SI') {
                             console.log('එරර් ! 😂')
                              //  -------> await KingBot.sendMessage(KingBot.user.jid, fs.readFileSync("./src/cd6032c65c27e0510ddad.jpg"), MessageType.image, { caption: '[🇱🇰𝚱𝚰𝚴Ｇ 𝛃𝚯𝚪🤘] WhatsApp User Bot   '+Config.WORKTYPE+' ලෙස ක්‍රියා කරයි!!\n\n▷ _මෙය ඔබගේ LOG අංකයයි මෙහි විධන භාවිතයෙන් වළකින්න_\n▷ඔබට යම් ගැටලුවක් ඇත්නම් අපගේ සහය සමූහට ලිවිය හැක.\nf_🖲️Support 01▷ https://chat.whatsapp.com/EmxfOklzLVIIyDEKPx4IYj\n\n*දෝෂය:* ```' + error + '```\n\n' });
