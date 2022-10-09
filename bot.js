@@ -92,12 +92,9 @@ async function ConnectToWhatsapp () {
         KingBot.ev.on('creds.update', saveState)
         KingBot.ev.on('messages.upsert', async(m) => {
                           await eventEmit(KingBot, m, err_msg, Config)
-                      
-
        )
                 }
 // ════════════════════LOGIN MESSAGE🍁🍁
-        )
     };
  
 ConnectToWhatsapp();
