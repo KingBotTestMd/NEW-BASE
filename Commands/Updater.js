@@ -6,7 +6,6 @@ you may not use this file except in compliance with the License.
 
 const simpleGit = require('simple-git');
 const git = simpleGit();
-const KingBot = require('../DATABASE/events');
 const {addCMD} = require("cobra-event-emit").events;
 const Config = require('../DATABASE/config');
 const exec = require('child_process').exec;
@@ -18,7 +17,7 @@ const Language = require('../DATABASE/language');
 const Lang = Language.getString('updater');
 
 
-KingBot.KingXCMD({pattern: 'update$', fromMe: true, desc: Lang.UPDATER_DESC}, (async (message, match) => {
+addCMD({pattern: 'update$', fromMe: true, desc: Lang.UPDATER_DESC}, (async (message, match) => {
     await git.fetch();
     var commits = await git.log([Config.BRANCH + '..origin/' + Config.BRANCH]);
     if (commits.total === 0) {
@@ -35,7 +34,7 @@ KingBot.KingXCMD({pattern: 'update$', fromMe: true, desc: Lang.UPDATER_DESC}, (a
                       }
 }));
 
-KingBot.KingXCMD({pattern: 'update now$', fromMe: true, desc: Lang.UPDATE_NOW_DESC}, (async (message, match) => {
+addCMD({pattern: 'update now$', fromMe: true, desc: Lang.UPDATE_NOW_DESC}, (async (message, match) => {
     await git.fetch();
     var commits = await git.log([Config.BRANCH + '..origin/' + Config.BRANCH]);
     if (commits.total === 0) {
