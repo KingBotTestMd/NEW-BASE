@@ -73,6 +73,11 @@
         "description": "",
         "required": true,
         "value":"public"
+         },
+        "ZZ_PASSWORD": {
+        "description": "",
+        "required": true,
+        "value": "testpw"
          }
    },
     "addons": [{
