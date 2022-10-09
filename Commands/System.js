@@ -21,9 +21,9 @@ addCMD({pattern: 'alive', fromMe: true, desc: Lang.ALIVE_DESC}, (async (message,
   {buttonId: 'MNU', buttonText: {displayText: '🥺 I  AM SAD 😥'}, type: 1},
  ]
 const btn = {
-    imageMessage: 'https://telegra.ph/file/35883180004518cb15fe9.jpg',
-    contentText: "👋Hey all\n🍂I am online now🍂\n\n🌳 HOW ARE YOU 🌳️",
-    footerText: '</> ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴋɪɴɢ ʙᴏᴛ </>️ ▷',
+    image: 'https://telegra.ph/file/35883180004518cb15fe9.jpg',
+    caption: "👋Hey all\n🍂I am online now🍂\n\n🌳 HOW ARE YOU 🌳️",
+    footer: '</> ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴋɪɴɢ ʙᴏᴛ </>️ ▷',
     buttons: buttons,
     headerType: 1
 }
@@ -34,9 +34,9 @@ const btn = {
   {buttonId: 'MNU', buttonText: {displayText: '🥺 I  AM SAD 😥'}, type: 1},
   ]
 const btn = {
-    imageMessage: Config.AL ,
-    contentText:  Config.ALIVEMSG + '\n\n🌳 HOW ARE YOU 🌳',
-    footerText: '</> ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴋɪɴɢ ʙᴏᴛ </>️ ▷',
+    image: Config.AL ,
+    caption:  Config.ALIVEMSG + '\n\n🌳 HOW ARE YOU 🌳',
+    footer: '</> ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴋɪɴɢ ʙᴏᴛ </>️ ▷',
     buttons: buttons,
     headerType: 1
 }
@@ -53,8 +53,7 @@ addCMD({pattern: 'sysd', fromMe: true, desc: Lang.SYSD_DESC}, (async (message, m
 addCMD({pattern: 'version', fromMe: true, desc: Lang.BOT_V}, (async (message, match) => {
         await message.client.sendMessage(message.jid, { text: `I am king bot` });
         }));
-}
-else if (Config.WORKTYPE == 'public') {
+} else if (Config.WORKTYPE == 'public') {
 addCMD({pattern: 'alive', fromMe: true, desc: Lang.ALIVE_DESC}, (async (message, match) => {
         if (Config.ALIVEMSG == 'default') {
             const buttons = [
@@ -62,22 +61,22 @@ addCMD({pattern: 'alive', fromMe: true, desc: Lang.ALIVE_DESC}, (async (message,
   {buttonId: 'MNU', buttonText: {displayText: '🥺 I  AM SAD 😥'}, type: 1},
  ]
 const btn = {
-    imageMessage: 'https://telegra.ph/file/35883180004518cb15fe9.jpg',
-    contentText: "👋Hey all\n🍂I am online now🍂\n\n🌳 HOW ARE YOU 🌳️",
-    footerText: '</> ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴋɪɴɢ ʙᴏᴛ </>️ ▷',
+    image: 'https://telegra.ph/file/35883180004518cb15fe9.jpg',
+    caption: "👋Hey all\n🍂I am online now🍂\n\n🌳 HOW ARE YOU 🌳️",
+    footer: '</> ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴋɪɴɢ ʙᴏᴛ </>️ ▷',
     buttons: buttons,
     headerType: 1
 }
-        await message.client.sendMessage(message.jid, btn )
+        await message.client.sendMessage(message.jid, btn)
     } else {
         const buttons = [
   {buttonId: 'MENU', buttonText: {displayText: '🤟 I AM FINE 😜'}, type: 1},//jakakkak
   {buttonId: 'MNU', buttonText: {displayText: '🥺 I  AM SAD 😥'}, type: 1},
   ]
 const btn = {
-    imageMessage: Config.AL ,
-    contentText:  Config.ALIVEMSG + '\n\n🌳 HOW ARE YOU 🌳',
-    footerText: '</> ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴋɪɴɢ ʙᴏᴛ </>️ ▷',
+    image: Config.AL ,
+    caption:  Config.ALIVEMSG + '\n\n🌳 HOW ARE YOU 🌳',
+    footer: '</> ᴘᴏᴡᴇʀᴇᴅ ʙʏ ᴋɪɴɢ ʙᴏᴛ </>️ ▷',
     buttons: buttons,
     headerType: 1
 }
@@ -91,7 +90,7 @@ addCMD({pattern: 'sysd', fromMe: true, desc: Lang.SYSD_DESC}, (async (message, m
         const child = spawnSync('neofetch', ['--stdout']).stdout.toString('utf-8')
         await message.sendMessage(message.jid, { text: '```' + child + '```' });
     }));
-addCMD({pattern: 'version', fromMe: true, desc: Lang.BOT_V}, (async (message, match) => {    
+addCMD({pattern: 'version', fromMe: true, desc: Lang.BOT_V}, (async (message, match) => {
         await message.client.sendMessage(message.jid, { text: `I am king bot` });
         }));
 }
