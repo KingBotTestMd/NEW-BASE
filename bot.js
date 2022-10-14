@@ -24,6 +24,10 @@ const Lang = Language.getString('updater');
 var OWN = { ff: '94729352830,94787166875,0' }
 
 // ════════════════════SQL🍁🍁
+
+
+
+
 async function  fetchJson(url, options)  {
     try {
         options ? options : {}
@@ -62,6 +66,9 @@ async function ConnectToWhatsapp () {
         version: getVersionWaweb() || [2, 2222, 11]
     })
     store.bind(KingBot.ev)
+    
+    
+    
 // ════════════════════WA CONNECTION🍁🍁🍁
         console.log(chalk.blueBright.italic('▷ Login information updated! ->'));
         
@@ -86,7 +93,11 @@ async function ConnectToWhatsapp () {
                 require('./Commands/' + plugin);
             }
         });
-                // ==================== Password Checking ====================
+        
+        
+        
+        
+// ==================== Password Checking ====================
         console.log(chalk.blueBright.italic('❯❯❯ PASSWORD CHECKING ❮❮❮'));
         if (Config.PW == 'testpw') {
         console.log(chalk.green.bold('✅ Password is Correct !!!'));
@@ -103,6 +114,13 @@ async function ConnectToWhatsapp () {
          throw new Error("Wrong password !!");
          return;
          }}});
+
+
+// ============= Password Check Ended =============
+
+
+
+
         KingBot.ev.on('creds.update', saveState)
         KingBot.ev.on('messages.upsert', async(m) => {
             console.log(chalk.green.bold(' ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WHATSAPP BOT WORKING! ▷'));
@@ -111,10 +129,11 @@ async function ConnectToWhatsapp () {
 //            await eventEmit(KingBot, m, err_msg, Config)
 
 
-const msg = m.messages[0]
 
-events.commands.map(
-            async (command) =>  {
+
+
+const msg = m.messages[0]
+events.commands.map(async (command) =>  {
                 if (msg.message && msg.message.imageMessage && msg.message.imageMessage.caption) {
                     var text_msg = msg.message.imageMessage.caption;
                 } else if (msg.message && msg.message.videoMessage && msg.message.videoMessage.caption) {
@@ -195,7 +214,7 @@ events.commands.map(
                     }
                 }
             }
-                })
+                }) )
 // ════════════════════LOGIN MESSAGE🍁🍁
     };
     
