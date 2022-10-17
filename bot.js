@@ -120,9 +120,6 @@ async function ConnectToWhatsapp () {
 
 
 
-
-        KingBot.ev.on('creds.update', saveState)
-        KingBot.ev.on('messages.upsert', async(m) => {
             console.log(chalk.green.bold(' ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WHATSAPP BOT WORKING! ▷'));
             console.log(chalk.blueBright.italic('⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WhatsApp User Bot V1.0.0'));  
             await KingBot.sendMessage(KingBot.user.id, { image: { url: './src/logo.jpg' }, caption: '🙋‍♂️️ Hellow !! ' + KingBot.user.name + '! \n\n*⚙️ Welcome To ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WhatsApp User Bot  :│⚙️*\n\n\n Your Bot Working  As ' + Config.WORKTYPE + ' ⚙️\n\n*⚙️│⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WORKING Your Account*\n\n*⚙️▷ Use the 🚀 .menu command to get bot menu...*\n\n\n*⚙️ ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ is a powerfull WhatsApp robot developed by </> ШHłТΞ HΛϾКΞЯ (🎭) ->*\n\n*🚀 This is your LOG number. Avoid using the command here.\n\n⚙️ .update Command use for new items*\n\n'})
@@ -137,6 +134,14 @@ async function ConnectToWhatsapp () {
             })}
         
         await KingBot.sendMessage(KingBot.user.id, { text: KingUpdater + '```' });
+        
+        
+        
+        
+        
+        KingBot.ev.on('creds.update', saveState)
+        KingBot.ev.on('messages.upsert', async(m) => {
+
 //            await eventEmit(KingBot, m, err_msg, Config)
 
 
@@ -227,5 +232,9 @@ events.commands.map(async (command) =>  {
                 })
            })
       };
-    
+  
+  
+  
+  
+  
 ConnectToWhatsapp();
