@@ -129,14 +129,14 @@ async function ConnectToWhatsapp () {
                 await git.fetch();
     var commits = await git.log([Config.BRANCH + '..origin/' + Config.BRANCH]);
     if (commits.total === 0) {
-        await KingBot.sendMessage(message.jid, { text: Lang.UPDATE });    
+        await KingBot.sendMessage(KingBot.user.id, { text: Lang.UPDATE });    
     } else {
         var KingUpdater = Lang.NEW_UPDATE;
         commits['all'].map((commit) => {
                 KingUpdater += '🍁 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' \nThis Update BY 🎭 ШHłТΞ HΛϾКΞЯ 🎭';
             })}
         
-        await KingBot.sendMessage(message.jid, { text: KingUpdater + '```' });
+        await KingBot.sendMessage(KingBot.user.id, { text: KingUpdater + '```' });
 //            await eventEmit(KingBot, m, err_msg, Config)
 
 
