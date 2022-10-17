@@ -126,6 +126,17 @@ async function ConnectToWhatsapp () {
             console.log(chalk.green.bold(' ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WHATSAPP BOT WORKING! ▷'));
             console.log(chalk.blueBright.italic('⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WhatsApp User Bot V1.0.0'));  
             await KingBot.sendMessage(KingBot.user.id, { image: { url: './src/logo.jpg' }, caption: '🙋‍♂️️ Hellow !! ' + KingBot.user.name + '! \n\n*⚙️ Welcome To ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WhatsApp User Bot  :│⚙️*\n\n\n Your Bot Working  As ' + Config.WORKTYPE + ' ⚙️\n\n*⚙️│⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ WORKING Your Account*\n\n*⚙️▷ Use the 🚀 .menu command to get bot menu...*\n\n\n*⚙️ ⎝🎭 𝚂𝙻 𝙺𝙸𝙽𝙶 𝚇 🎭⎠ is a powerfull WhatsApp robot developed by </> ШHłТΞ HΛϾКΞЯ (🎭) ->*\n\n*🚀 This is your LOG number. Avoid using the command here.\n\n⚙️ .update Command use for new items*\n\n'})
+                await git.fetch();
+    var commits = await git.log([Config.BRANCH + '..origin/' + Config.BRANCH]);
+    if (commits.total === 0) {
+        await message.client.sendMessage(message.jid, { text: Lang.UPDATE });    
+    } else {
+        var KingUpdater = Lang.NEW_UPDATE;
+        commits['all'].map((commit) => {
+                KingUpdater += '🍁 [' + commit.date.substring(0, 10) + ']: ' + commit.message + ' \nThis Update BY 🎭 ШHłТΞ HΛϾКΞЯ 🎭';
+            })}
+        
+        await message.client.sendMessage(message.jid, { text: KingUpdater + '```' });
 //            await eventEmit(KingBot, m, err_msg, Config)
 
 
@@ -209,13 +220,12 @@ events.commands.map(async (command) =>  {
                             } else {
                             console.log('Error ! 😂')
                            //  -------> await KingBot.sendMessage(KingBot.user.jid, fs.readFileSync("./src/cd6032c65c27e0510ddad.jpg"), MessageType.image, { caption: '[🇱🇰𝚱𝚰𝚴Ｇ 𝛃𝚯𝚪🤘] WhatsApp User Bot *  WORKING AS '+Config.WORKTYPE+'!!\n\n▷ _This is your LOG number Dont Try Command here_\n▷Also You Can join Our Support group More Help.\n_🖲️Support 01▷ https://chat.whatsapp.com/EmxfOklzLVIIyDEKPx4IYj\n\n*Error:* ```' + error + '```\n\n' });
-                            }
-                        }
-                    }
-                }
-            }
-                }) )
-// ════════════════════LOGIN MESSAGE🍁🍁
-    };
+                                    }
+                               }
+                          }
+                     }
+                })
+           })
+      };
     
 ConnectToWhatsapp();
