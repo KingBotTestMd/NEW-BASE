@@ -7,7 +7,7 @@ you may not use this file except in compliance with the License.
 const fs = require("fs");
 const path = require("path");
 const chalk = require('chalk');
-const Config = require('./DATABASE/config');
+const Config = require('./DATABASE/Config');
 const events = require('./DATABASE/events');
 const { default : makeWASocket, useSingleFileAuthState, DisconnectReason, delay, BufferJSON, WAConnection, makeInMemoryStore, makeBufferData } = require('@adiwajshing/baileys');
 const { Boom } = ('@hapi/boom');
