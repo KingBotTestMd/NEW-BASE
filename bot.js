@@ -14,10 +14,10 @@ const { Boom } = ('@hapi/boom');
 const Pino = require('pino');
 const axios = require('axios');
 const got = require('got');
-const {err_msg} =  require("./err_msg")
+const { err_msg } =  require("./err_msg");
 const simpleGit = require('simple-git');
 const git = simpleGit();
-const {eventEmit} = require("cobra-event-emit").event_emit
+const { eventEmit } = require("cobra-event-emit").event_emit;
 
 const Language = require('./DATABASE/language');
 const Lang = Language.getString('updater');
@@ -73,18 +73,17 @@ async function ConnectToWhatsapp () {
         console.log(chalk.blueBright.italic('▷ Login information updated! ->'));
         
     KingBot.ev.on('connection.update', async(update) => {
-        const { connection, lastDisconnect } = update
-
-            if (connection === 'close') {
+     const { connection, lastDisconnect } = update
+        if (connection === 'close') {
                 let reason = new Boom(lastDisconnect?.error)?.output?.statusCode
-                if (reason === DisconnectReason.badSession) { console.log(`Bad Session File, Please Delete Session and Scan Again 🤕`); process.exit(); }
-                else if (reason === DisconnectReason.connectionClosed) { console.log("Connection closed, Reconnecting...."); ConnectToWhatsapp (); }
-                else if (reason === DisconnectReason.connectionLost) { console.log("Connection Lost from Server, Reconnecting..."); ConnectToWhatsapp (); }
-                else if (reason === DisconnectReason.connectionReplaced) { console.log("Connection Replaced, Another New Session Opened, Please Close Current Session First"); process.exit(); }
-                else if (reason === DisconnectReason.loggedOut) { console.log(`Device Logged Out, Please Delete Session And Scan Again.`); process.exit(); }
-                else if (reason === DisconnectReason.restartRequired) { console.log("Restart Required, Restarting..."); ConnectToWhatsapp (); }
-                else if (reason === DisconnectReason.timedOut) { console.log("Connection TimedOut, Reconnecting..."); ConnectToWhatsapp (); }
-                else { console.log(`Unknown DisconnectReason: ${reason}|${connection}`) }
+                if (reason === DisconnectReason.badSession) { console.log(`Bad Session File, Please Delete Session and Scan Again 🤕`); process.exit();
+                } else if (reason === DisconnectReason.connectionClosed) { console.log("Connection closed, Reconnecting...."); ConnectToWhatsapp ();
+                } else if (reason === DisconnectReason.connectionLost) { console.log("Connection Lost from Server, Reconnecting..."); ConnectToWhatsapp ();
+                } else if (reason === DisconnectReason.connectionReplaced) { console.log("Connection Replaced, Another New Session Opened, Please Close Current Session First"); process.exit();
+                } else if (reason === DisconnectReason.loggedOut) { console.log(`Device Logged Out, Please Delete Session And Scan Again.`); process.exit();
+                } else if (reason === DisconnectReason.restartRequired) { console.log("Restart Required, Restarting..."); ConnectToWhatsapp ();
+                } else if (reason === DisconnectReason.timedOut) { console.log("Connection TimedOut, Reconnecting..."); ConnectToWhatsapp ();
+                } else { console.log(`Unknown DisconnectReason: ${reason}|${connection}`) }
         } else if (connection === 'open') { 
         console.log(chalk.green.bold('✅️  Login successful! ▶'));
         console.log(chalk.blueBright.italic('⚙️ Installing Commands...'))
