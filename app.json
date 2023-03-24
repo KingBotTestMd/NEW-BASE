@@ -10,7 +10,7 @@
         "description": "",
         "required": true,
         "value": ""
-        }
+        },
         "ALIVE_MASSAGE": {
         "description": "",
         "required": false,
