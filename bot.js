@@ -55,14 +55,15 @@ async function  fetchJson(url, options)  {
     return version
   }
 const store = makeInMemoryStore({ logger: Pino().child({ level: 'silent', stream: 'store' }) })
-const { state, saveState } = useSingleFileAuthState('./KingBot/_StringSession.js')
+ await Config.DATABASE.sync();
+const Session = new StringSession();
 async function ConnectToWhatsapp () {
-    await Config.DATABASE.sync();
+   
     const KingBot = makeWASocket({
         logger: Pino({ level: 'silent' }),
         browser: ['SL-KING-X-MD','Chrome','1.0.0'],
         printQRInTerminal: false,
-        auth: state,
+        auth: Session,
         version: getVersionWaweb() || [2, 2222, 11]
     })
     store.bind(KingBot.ev)
