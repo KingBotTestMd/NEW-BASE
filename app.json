@@ -6,6 +6,11 @@
   "keywords": ["nodejs", "bot", "whatsapp bot", "whatsapp automation", "multi device"],
   "stack": "container",
   "env": { 
+        "SLKINGX_SESSION": {
+        "description": "",
+        "required": true,
+        "value": ""
+        }
         "ALIVE_MASSAGE": {
         "description": "",
         "required": false,
