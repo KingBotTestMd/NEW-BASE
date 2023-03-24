@@ -13,7 +13,7 @@ module.exports = {
     ZRUN: "zenzapi",
     CHANNEL: 'https://chat.whatsapp.com/GT5V8RakkftB7DAKWMeQML',
     MEN: process.env.MENU_CMD === undefined ? 'menu' : process.env.MENU_CMD,
-    SESSION: process.env.KINGBOT_SESSION === undefined ? '' : process.env.KINGBOT_SESSION,
+    SESSION: process.env.SLKINGX_SESSION === undefined ? '' : process.env.SLKINGX_SESSION,
     PW: process.env.ZZ_PASSWORD === undefined ? '' : process.env.ZZ_PASSWORD,
     ANTI_LINK: process.env.ANTI_LINK === undefined ? 'false' : process.env.ANTI_LINK,
     TIME: process.env.TIME_ZONE === undefined ? 'Asia/Colombo' : process.env.TIME_ZONE,
