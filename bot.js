@@ -26,7 +26,7 @@ var OWN = { ff: '94729352830,94787166875,0' }
 // ════════════════════SQL🍁🍁
 
 
-const KingBotDB = config.DATABASE.define('KingBot', {
+const KingBotDB = Config.DATABASE.define('KingBot', {
     info: {
       type: DataTypes.STRING,
       allowNull: false
