@@ -19,6 +19,7 @@ const simpleGit = require('simple-git');
 const git = simpleGit();
 const { eventEmit } = require("cobra-event-emit").event_emit;
 
+const { DataTypes } = require('sequelize');
 const Language = require('./DATABASE/language');
 const Lang = Language.getString('updater');
 var OWN = { ff: '94729352830,94787166875,0' }
