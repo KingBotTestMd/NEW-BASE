@@ -26,7 +26,16 @@ var OWN = { ff: '94729352830,94787166875,0' }
 // ════════════════════SQL🍁🍁
 
 
-
+const KingBotDB = config.DATABASE.define('KingBot', {
+    info: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    value: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    }
+});
 
 async function  fetchJson(url, options)  {
     try {
@@ -54,11 +63,23 @@ async function  fetchJson(url, options)  {
     }
     return version
   }
+  
+
+  
+  
 const store = makeInMemoryStore({ logger: Pino().child({ level: 'silent', stream: 'store' }) })
- await Config.DATABASE.sync();
 const Session = new StringSession();
 async function ConnectToWhatsapp () {
    
+   
+   await config.DATABASE.sync();
+   var StrSes_Db = await KingBotDB.findAll({
+        where: {
+          info: 'StringSession'
+        }
+    });
+    
+    
     const KingBot = makeWASocket({
         logger: Pino({ level: 'silent' }),
         browser: ['SL-KING-X-MD','Chrome','1.0.0'],
