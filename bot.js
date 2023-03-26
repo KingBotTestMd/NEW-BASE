@@ -72,7 +72,7 @@ const Session = new StringSession();
 async function ConnectToWhatsapp () {
    
    
-   await config.DATABASE.sync();
+   await Config.DATABASE.sync();
    var StrSes_Db = await KingBotDB.findAll({
         where: {
           info: 'StringSession'
