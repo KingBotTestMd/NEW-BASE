@@ -11,6 +11,6 @@ module.exports = {
     StringSession: require('./_StringSession'),
     ReplyMessage: require('./_ReplyMessage'),
     Image: require('./_Image'),
-    Video: require('./_Video')
-    StringSession: require('./_StringSession'),
+    Video: require('./_Video'),
+    StringSession: require('./_StringSession')
 };
