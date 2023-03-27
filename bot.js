@@ -19,6 +19,7 @@ const simpleGit = require('simple-git');
 const git = simpleGit();
 const { eventEmit } = require("cobra-event-emit").event_emit;
 
+const { Message, StringSession, Image, Video } = require('./KingBot/');
 const { DataTypes } = require('sequelize');
 const Language = require('./DATABASE/language');
 const Lang = Language.getString('updater');
