@@ -15,13 +15,13 @@ const { default: KingBotConnect, BufferJSON,generateLinkPreviewIfRequired, WA_DE
 const util = require("util");
 const Levels = require("discord-xp");
 try {
-    Levels.setURL(mongodb);
+    Levels.setURL('mongodb+srv://sam:sam@cluster0.igmeo1d.mongodb.net/?retryWrites=true&w=majority');
     console.log("🌍 Connected to the Secktor DB")
 } catch {
     console.log("Could not connect with Mongodb please provide accurate uri check video for more inofo❗\nhttps://youtu.be/7YWI50BDO5op")
     process.exit(0)
 }
-const { sck1, RandomXP, sck, plugindb, card } = require("../lib");
+const { sck1, RandomXP, sck, plugindb, card } = require("./DATABASE/lib");
 const chalk = require("chalk");
 const fetch = require("node-fetch");
 const axios = require("axios");
@@ -54,7 +54,7 @@ setTimeout(() => {
 	    
          }
 	try{
-        await mongoose.connect(mongodb);
+        await mongoose.connect('mongodb+srv://sam:sam@cluster0.igmeo1d.mongodb.net/?retryWrites=true&w=majority');
 	} catch {
 		console.log('Could not connect with Mongodb.\nPlease visit https://secktorbot.tech/wiki')
 	}
