@@ -1,4 +1,4 @@
-var config = require("../config");
+var config = require("../Config");
 var commands = [];
 
 function cmd(info, func) {
