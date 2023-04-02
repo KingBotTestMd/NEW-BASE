@@ -82,7 +82,7 @@ setTimeout(() => {
         global.log0 = fs.readFileSync(__dirname + "/src/logo.jpg"); //ur logo pic
         const { state, saveCreds } = await useMultiFileAuthState(__dirname + '/auth_info_baileys/')
         const KingBot = KingBotConnect({
-            logger: pino({ level: 'fatal' }),
+            logger: pino({ level: 'silent' }),
             printQRInTerminal: true,
             browser: ['SL-KING-X-MD', 'Chrome', '1.0.0'],
             fireInitQueries: false,
