@@ -33,7 +33,7 @@ const speedofbot = require("performance-now");
 global.db = JSON.parse(fs.readFileSync(__dirname + "/DATABASE/lib/database.json"));
 var CryptoJS = require("crypto-js");
 var prefixRegex = Config.prefix === "false" || Config.prefix === "null" ? "^" : new RegExp('^[' + Config.HANDLERS + ']');
-let cc = Config.sessionName.replace(/SLKINGX;;;/g, "");
+let cc = Config.SESSION.replace(/SLKINGX;;;/g, "");
 async function MakeSession(){
 if (!fs.existsSync(__dirname + '/auth_info_baileys/creds.json')) {
     if(cc.length<30){
