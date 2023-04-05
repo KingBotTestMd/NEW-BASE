@@ -233,7 +233,7 @@ function toVideo(buffer, ext) {
 	return ffmpeg(buffer, ['-c:v', 'libx264', '-c:a', 'aac', '-ab', '128k', '-ar', '44100', '-crf', '32', '-preset', 'slow'], ext, 'mp4')	
 }	
 
-const Config = require('../config');	
+const Config = require('../Config');	
 if (fs.existsSync('./Themes/' + Config.LANG + '.json')) {	
 	//log(pint('Loading ' + Config.LANG + ' language...', '.'));	
 	var json = JSON.parse(fs.readFileSync('./Themes/' + Config.LANG + '.json'));	
@@ -479,7 +479,7 @@ async function sync() {
     const git = simpleGit();	
         await git.fetch();	
             var commits = await git.log(['main' + '..origin/' + 'main']);	
-	     const { prefix } = require('../config');	
+	     const { prefix } = require('../Config');	
             var availupdate = '*𝐔𝐩𝐝𝐚𝐭𝐞 𝐀𝐚𝐢𝐥𝐚𝐛𝐥𝐞* \n\n';	
             commits['all'].map(	
             (commit) => { 	
