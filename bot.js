@@ -16,7 +16,7 @@ const util = require("util");
 const Levels = require("discord-xp");
 try {
     Levels.setURL('mongodb+srv://sam:sam@cluster0.igmeo1d.mongodb.net/?retryWrites=true&w=majority');
-    console.log("🌍 Connected to the Secktor DB")
+    console.log("🌍 Connecting To SL KING-X Server...")
 } catch {
     console.log("Could not connect with Mongodb please provide accurate uri check video for more inofo❗\nhttps://youtu.be/7YWI50BDO5op")
     process.exit(0)
@@ -33,7 +33,7 @@ const speedofbot = require("performance-now");
 global.db = JSON.parse(fs.readFileSync(__dirname + "/DATABASE/lib/database.json"));
 var CryptoJS = require("crypto-js");
 var prefixRegex = Config.prefix === "false" || Config.prefix === "null" ? "^" : new RegExp('^[' + Config.HANDLERS + ']');
-let cc = Config.sessionName.replace(/Secktor;;;/g, "");
+let cc = Config.sessionName.replace(/SLKINGX;;;/g, "");
 async function MakeSession(){
 if (!fs.existsSync(__dirname + '/auth_info_baileys/creds.json')) {
     if(cc.length<30){
