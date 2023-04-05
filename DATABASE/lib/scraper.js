@@ -234,11 +234,11 @@ function toVideo(buffer, ext) {
 }	
 
 const Config = require('../Config');	
-if (fs.existsSync('./Themes/' + Config.LANG + '.json')) {	
+if (fs.existsSync('./Languages/' + Config.LANG + '.json')) {	
 	//log(pint('Loading ' + Config.LANG + ' language...', '.'));	
-	var json = JSON.parse(fs.readFileSync('./Themes/' + Config.LANG + '.json'));	
+	var json = JSON.parse(fs.readFileSync('./Languages/' + Config.LANG + '.json'));	
 } else {	
-	var json = JSON.parse(fs.readFileSync('./Themes/SECKTOR.json'));	
+	var json = JSON.parse(fs.readFileSync('../Languages/EN.json'));	
 }	
 function ffancy(teks) {	
     return new Promise((resolve, reject) => {	
